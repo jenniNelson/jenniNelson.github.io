@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" preserveAspectRatio="xMinYMin meet"
+     viewBox="0 0 216 168">
+ <g>
+  <!--<image href="Sinnoh.png" id="svg_1" height="168" width="216"/>-->
+  <image href="data/map_data/Sinnoh.png" height="168" width="216"/>
+  <rect class="map_place" id="Route_201" height="7" width="14" y="143.42985" x="22.768893"/>
+  <rect class="map_place" id="Route_202" height="7" width="7" y="136.545794" x="36.899323"/>
+  <rect class="map_place" id="Route_203" height="7" width="13.159418" y="122.777683" x="44.508017"/>
+  <rect class="map_place" id="Route_204" height="14" width="7" y="108.647253" x="36.899323"/>
+  <!--<g id="Route_205">-->
+   <!--<rect height="34.898539" width="7" y="73.502334" x="43.42106"/>-->
+   <!--<rect height="14.608692" width="7" y="73.502336" x="50.305115"/>-->
+   <!--<rect height="7" width="7" y="87.632769" x="36.537005"/>-->
+   <!--<rect height="7" width="7" y="73.502339" x="57.189171"/>-->
+  <!--</g>-->
+  <g class="map_place" id="Route_205">
+   <rect height="34.898539" width="7" y="73.502334" x="43.42106"/>
+   <rect height="14.608692" width="7" y="73.502336" x="50.305115"/>
+   <rect height="7" width="7" y="87.632769" x="36.537005"/>
+   <rect height="7" width="7" y="73.502339" x="57.189171"/>
+   <rect height="7" width="7" y="101.5" x="50"/>
+  </g>
+  <rect class="map_place" id="Route_206" height="27.652167" width="7" y="87.995081" x="64.797864"/>
+  <rect class="map_place" id="Route_207" height="7" width="21.492748" y="115.53131" x="64.797856"/>
+  <rect class="map_place" id="Route_208" height="7" width="14" y="115.531308" x="86.174668"/>
+  <g class="map_place" id="Route_209">
+   <rect height="7" width="14" y="115.531308" x="113.95726"/>
+   <rect height="7" width="7" y="108.647254" x="120.957262"/>
+  </g>
+  <g class="map_place" id="Route_210">
+   <rect height="28.014486" width="7" y="73.502345" x="120.594942"/>
+   <rect height="7" width="14" y="73.502337" x="107.189154"/>
+  </g>
+  <rect class="map_place" id="Route_211" height="7" width="21" y="73.502337" x="78.928294"/>
+  <g class="map_place" id="Route_212">
+   <rect height="28" width="7" y="122.415371" x="99.580462"/>
+   <rect height="7" width="21" y="143.42985" x="106.464514"/>
+  </g>
+  <rect class="map_place" id="Route_213" height="14" width="21" y="136.545794" x="141.609429"/>
+  <rect class="map_place" id="Route_214" height="21" width="7" y="101.038561" x="155.377543"/>
+  <rect class="map_place" id="Route_215" height="7" width="21" y="87.632772" x="127.478997"/>
+  <rect class="map_place" id="Route_216" height="7" width="21" y="45.6038" x="64.435544"/>
+  <rect class="map_place" id="Route_217" height="28" width="7" y="18.067576" x="64.43554"/>
+  <rect class="map_place" id="Route_218" height="7" width="14" y="122.777685" x="15.522516"/>
+  <rect class="map_place" id="Route_219" height="7" width="7" y="150.676226" x="36.537002"/>
+  <rect class="map_place" id="Route_220" height="7" width="14" y="157.560282" x="36.537005"/>
+  <rect class="map_place" id="Route_221" height="7" width="14" y="157.560282" x="50.305116"/>
+  <rect class="map_place" id="Route_222" height="7" width="21" y="129.661738" x="162.623912"/>
+  <rect class="map_place" id="Route_223" height="28" width="7" y="93.792189" x="183.638397"/>
+  <g class="map_place" id="Route_224">
+   <rect height="7" width="14" y="73.502339" x="190.522453"/>
+   <rect height="7" width="7" y="80.748716" x="190.522454"/>
+  </g>
+  <rect class="map_place" id="Route_225" height="21" width="7" y="31.111052" x="134.000733"/>
+  <rect class="map_place" id="Route_226" height="7" width="21" y="31.473371" x="148.855801"/>
+  <rect class="map_place" id="Route_227" height="21" width="7" y="10.096567" x="162.261595"/>
+  <rect class="map_place" id="Route_228" height="21" width="7" y="31.473371" x="169.507967"/>
+  <rect class="map_place" id="Route_229" height="7" width="14" y="52.487856" x="169.507968"/>
+  <rect class="map_place" id="Route_230" height="7" width="21" y="52.487856" x="148.493483"/>
+  <rect class="map_place" rx="4" id="Lake_Valour" height="15" width="15" y="122.05305" x="147.768844"/>
+  <rect class="map_place" rx="4" id="Lake_Verity" height="15" width="15" y="136.183474" x="7.91382"/>
+  <rect class="map_place" rx="4" id="Lake_Acuity" height="15" width="15" y="3.212512" x="63.710906"/>
+  <rect class="map_place" rx="4" id="Jubilife_City" height="15" width="15" y="121.690732" x="29.290628"/>
+  <rect class="map_place" rx="4" id="Veilstone_City" height="15" width="15" y="86.908131" x="148.131164"/>
+  <rect class="map_place" rx="4" id="Hearthorne_City" height="15" width="15" y="107.922619" x="99.218138"/>
+  <rect class="map_place" rx="4" id="Pastoria_City" height="15" width="15" y="135.821156" x="127.478998"/>
+  <rect class="map_place" rx="4" id="Sunyshore_City" height="15" width="15" y="122.053044" x="182.91376"/>
+  <rect class="map_place" rx="4" id="Canalave_City" height="15" width="7" y="115.168995" x="8.638459"/>
+  <rect class="map_place" rx="4" id="Snowpoint_City" height="15" width="7" y="2.487874" x="78.565973"/>
+  <rect class="map_place" rx="4" id="Fight_Area" height="7" width="15" y="52.850174" x="134.000734"/>
+  <rect class="map_place" rx="4" id="Solaceon_City" height="7" width="15" y="101.763202" x="120.232623"/>
+  <rect class="map_place" rx="4" id="Floaroma_City" height="15" width="7" y="94.516829" x="36.174682"/>
+  <g class="map_place" id="Eterna_City">
+   <rect rx="4" height="15" width="7" y="73.140025" x="64.435539"/>
+   <rect rx="4" height="7" width="15" y="73.140025" x="64.43554"/>
+  </g>
+  <g class="map_place" id="Oreburgh_City" transform="rotate(90 63.9645 129.915)">
+   <rect rx="4" id="svg_69" height="15" width="7" y="122.415369" x="56.464527"/>
+   <rect rx="4" id="svg_70" height="7" width="15" y="122.415369" x="56.464528"/>
+  </g>
+  <ellipse class="map_place" id="Celestic_City" ry="5" rx="5" cy="77.297103" cx="103.98547"/>
+  <ellipse class="map_place" id="Survival_Area" ry="5" rx="5" cy="35.63045" cx="144.565164"/>
+  <ellipse class="map_place" id="Sandgem_Town" ry="5" rx="5" cy="146.862296" cx="39.855061"/>
+  <ellipse class="map_place" id="Twin_Leaf_Town" ry="5" rx="5" cy="154.108664" cx="25.724629"/>
+  <ellipse class="map_place" id="Pal_Park" ry="5" rx="5" cy="160.630408" cx="68.115918"/>
+  <ellipse class="map_place" id="Resort_Area" ry="5" rx="5" cy="63.166671" cx="180.072399"/>
+  <!--<rect id="Victory_Road" ry="5" rx="5" cy="84.181155" cx="186.956456"/>-->
+  <rect class="map_place" rx="4" id="Victory_Road" height="15" width="7" y="80" x="183.5"/>
+  <!--<ellipse id="Victory_Road" ry="5" rx="5" cy="84.181155" cx="186.956456"/>-->
+
+  <rect class="map_place" id="Turnback_Cave" rx="4" height="15" width="15" y="107.922616" x="162.261594"/>
+  <!--<ellipse id="Windmills" ry="5" rx="5" cy="105.195639" cx="53.985487"/>-->
+  <ellipse class="map_place" id="Iron_Island" ry="5" rx="5" cy="70.413047" cx="25.362309"/>
+  <ellipse class="map_place" id="Full_Moon_Island" ry="5" rx="5" cy="21.137701" cx="11.956516"/>
+  <ellipse class="map_place" id="New_Moon_Island" ry="5" rx="5" cy="20.775383" cx="33.333325"/>
+  <ellipse class="map_place" id="Battle_Tower" ry="5" rx="5" cy="49.036242" cx="144.927484"/>
+
+  <g class="map_place" id="Mt_Coronet">
+   <rect rx="4" height="58" width="7" y="44.516845" x="85.450029"/>
+   <rect rx="4" height="22" width="7" y="93.792192" x="78.565973"/>
+  </g>
+  <rect class="map_place" id="Flower_Paradise" rx="4" height="22" width="7" y="2.125555" x="197.406511"/>
+  <rect class="map_place" id="Event_Route" rx="4" height="49" width="7" y="24.226996" x="197.406511"/>
+ </g>
+</svg>

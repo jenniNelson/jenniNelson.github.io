@@ -1,0 +1,2 @@
+{'Pokémon Silver', 'Pokémon Gold', 'Pearl', 'Pokémon Blue (Jp.)', 'Pokémon Red', 'HeartGold', 'SoulSilver', 'Black 2', 'Omega Ruby', 'Ruby', 'Moon', 'Pokémon Yellow', 'Sapphire', 'Platinum', 'Pokémon Green (Jp.) | Pokémon Blue (Intl.)', 'Alpha Sapphire', 'Diamond', 'White', 'Sun', 'Pokémon Crystal', 'FireRed', 'LeafGreen', 'X', 'Y', 'Emerald', 'Ultra Moon', 'Black', 'White 2', 'Ultra Sun'}
+

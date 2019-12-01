@@ -1,0 +1,290 @@
+body, button{
+    font-family: "Gill Sans", "sans-serif";
+}
+
+thead,
+tbody {
+  display:table-header-group
+}
+
+tbody {
+  height: 400px;
+  overflow: auto;
+}
+
+#pokedex td {
+  /*border-right: solid 1px #f00;*/
+  border: solid 1px #7b7b7b;
+}
+#pokedex tr:hover {
+    background-color: #f5f5f5;
+}
+
+table{
+  border-collapse: collapse;
+
+  overflow-x:scroll;
+  /*table-layout: fixed;*/
+}
+
+.hidden{
+    display: none
+}
+
+
+th {
+  text-align: center;
+}
+/* Sortable tables */
+table.sortable thead {
+    background-color:#eee;
+    color:#666666;
+    font-weight: bold;
+    cursor: default;
+}
+
+
+.map_img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.map_place {
+    opacity: 0;
+}
+.highlighted_region, g.highlighted_region>* {
+    fill: #ff2f00;
+    opacity: .8;
+}
+
+rect.svg_background{
+    fill: #ebebeb;
+}
+.filter_select > rect.svg_background {
+    /*opacity: 1;*/
+
+    fill: #928c83;
+}
+
+.filter_button {
+    cursor: pointer;
+}
+
+
+span.game_title {
+    margin-right: 3px;
+}
+span.red {
+    background-color: #FF1111;
+}
+span.blue {
+    background-color: #1111FF;;
+}
+span.yellow {
+    background-color: #FFD733;
+}
+span.red_jp {
+    background-color: #FF1111;
+}
+span.blue_jp {
+    background-color: #1111FF;;
+}
+span.green_jp {
+    background-color: #11BB11;
+}
+span.pikachu_jp {
+    background-color: #FFD733;
+}
+span.gold {
+    background-color: #DAA520;
+}
+span.silver {
+    background-color: #C0C0C0;
+}
+span.crystal {
+    background-color: lightgrey;
+}
+span.soul_silver {
+    background-color: lightgrey;
+}
+span.heart_gold {
+    background-color: lightgrey;
+}
+span.ruby {
+    background-color: lightgrey;
+}
+span.sapphire {
+    background-color: lightgrey;
+}
+span.emerald {
+    background-color: lightgrey;
+}
+span.fire_red {
+    background-color: lightgrey;
+}
+span.leaf_green {
+    background-color: lightgrey;
+}
+span.diamond {
+    background-color: lightgrey;
+}
+span.pearl {
+    background-color: lightgrey;
+}
+span.platinum {
+    background-color: lightgrey;
+}
+span.black {
+    background-color: lightgrey;
+}
+span.white {
+    background-color: lightgrey;
+}
+span.black_2 {
+    background-color: lightgrey;
+}
+span.white_2 {
+    background-color: lightgrey;
+}
+span.y {
+    background-color: #EA1A3E;
+}
+span.x {
+    background-color: #025DA6;
+}
+span.omega_ruby {
+    background-color: #AB2813;
+}
+span.alpha_sapphire {
+    background-color: #26649C;
+}
+span.sun {
+    background-color: #F1912B;
+}
+span.moon {
+    background-color: #5599CA;
+}
+span.ultra_sun {
+    background-color: #E95B2B;
+}
+span.ultra_moon {
+    background-color: #226DB5;
+}
+
+
+
+
+
+/****** Stolen from: https://www.w3schools.com/howto/howto_js_tabs.asp *****************/
+
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+    font-size: medium;
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+display: none;
+padding: 6px 12px;
+border: 1px solid #ccc;
+border-top: none;
+}
+
+/***********************************/
+
+
+.map_area {
+    border: 3px dotted;
+    width: 100%;
+}
+
+.table_area {
+    border: 3px dotted;
+    width: 50%;
+}
+
+.vs_area {
+    /*border: 3px dotted;*/
+    width: 100%
+}
+
+.background {
+    /*border: 2px solid;*/
+    width: 1400px;
+}
+
+.vs_pane {
+    width: 50%
+}
+
+#vs_table {
+    width: 100%;
+    horiz-align: center;
+    vertical-align: center;
+}
+
+#team_build_table {
+    width: 100%
+}
+
+#left_pokemon_pane {
+
+}
+
+#right_pokemon_pane {
+
+}
+
+#left_dropdown {
+    /*position: relative;*/
+    /*left: 5%;*/
+    /*right: 5%;*/
+    width: 80%
+}
+
+#right_dropdown {
+    width: 80%
+}
+
+.poke_selector {
+    width: 80%
+}
+
+.tick line {
+    opacity: 70%;
+}
+
+/*#switch_container {*/
+  /*display: flex;*/
+  /*justify-content: center;*/
+/*}*/
+
+/*#vs_to_team_toggle {*/
+    /*margin: 0 auto;*/
+/*}*/

@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<svg width="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet"
+viewBox="0 0 160 136">
+ <g xmlns="http://www.w3.org/2000/svg">
+  <title>Layer 1</title>
+  <image href="data/map_data/Kanto.png" height="136" width="160" y="0.484262" x="0"/>
+  <!--<image xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/png;base64,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" id="svg_1" height="136" width="160" y="0.484262" x="0"/>-->
+  <rect class="map_place" id="Indigo_Plateau" height="8" width="8" y="16" x="15.714286" />
+  <rect class="map_place" id="Viridian_City" height="8" width="8" y="63.69976" x="31.937047" />
+  <rect class="map_place" id="Pewter_City" height="8" width="8" y="23.990315" x="31.694916" />
+  <rect class="map_place" id="Celadon_City" height="8" width="8" y="39.728813" x="71.646491" />
+  <rect class="map_place" id="Saffron_City" height="8" width="8" y="40.213076" x="95.617435" />
+  <rect class="map_place" id="Cerulean City" height="8" width="8" y="16.242131" x="95.859565" />
+  <rect class="map_place" id="Pallet_Town" height="8" width="8" y="87.912832" x="32.179177" />
+  <rect class="map_place" id="Lavender_Town" height="8" width="8" y="39.970944" x="128.062954" />
+  <rect class="map_place" id="Vermillion_City" height="8" width="8" y="71.932205" x="95.859569" />
+  <rect class="map_place" id="Fuschia_City" height="8" width="8" y="104.135593" x="79.878936" />
+  <rect class="map_place" id="Cinnabar_Island" height="8" width="8" y="120.116223" x="31.694916" />
+  <ellipse class="map_place" ry="5" rx="5" id="Victory_Road" cy="36.03874" cx="19.951574" />
+  <ellipse class="map_place" ry="5" rx="5" id="Viridian_Forest" cy="36.03874" cx="35.932204" />
+  <ellipse class="map_place" ry="5" rx="5" id="Mt_Moon" cy="20.058111" cx="68.135596" />
+  <ellipse class="map_place" ry="5" rx="5" id="Power_Plant" cy="20.7" cx="132.058115" />
+  <ellipse class="map_place" ry="5" rx="5" id="Rock_Tunnel" cy="28.048425" cx="132.058115" />
+  <ellipse class="map_place" ry="5" rx="5" id="Seafoam_Islands" cy="124.416469" cx="59.661019" />
+  <rect class="map_place" id="Route_23" height="23.486683" width="8.474576" y="40.76029" x="15.230025" />
+  <rect class="map_place" id="Route_2" height="23.486683" width="8.474576" y="40.276029" x="31.694916" />
+  <rect class="map_place" id="Route_17" height="40.677966" width="8.474576" y="48.024215" x="47.675546" />
+  <rect class="map_place" id="Route_1" height="15.980629" width="8.474576" y="71.995157" x="31.694916" />
+  <rect class="map_place" id="Route_21" height="23.486683" width="8.474576" y="96.208232" x="31.937047" />
+  <rect class="map_place" id="Route_5" height="15.496367" width="8.474576" y="24.295397" x="95.617437" />
+  <rect class="map_place" id="Route_12" height="39.951576" width="8.474576" y="48.024213" x="127.820826" />
+  <rect class="map_place" id="Route_6" height="23.486683" width="8.474576" y="48.266343" x="95.859565" />
+  <rect class="map_place" id="Route_24" height="15.738499" width="8.474576" y="0.082324" x="95.859565" />
+  <rect class="map_place" id="Route_14" height="23.728813" width="8.474576" y="88.46005" x="103.365621" />
+  <rect class="map_place" id="Route_19" height="15.496368" width="8.474576" y="112.188865" x="79.636806" />
+  <rect class="map_place" id="Route_10" height="7.506053" width="8.474576" y="32.527844" x="127.820826" />
+  <rect class="map_place" id="Route_9" height="8" width="24" y="16.305084" x="104.09201" />
+  <rect class="map_place" id="Route_4" height="8" width="23.002424" y="16.305084" x="72.857142" />
+  <rect class="map_place" id="Route_25" height="8" width="15.496371" y="0.082323" x="104.334143" />
+  <rect class="map_place" id="Route_8" height="8" width="23.728816" y="40.033897" x="103.849879" />
+  <rect class="map_place" id="Route_7" height="8" width="15.254239" y="40.276028" x="80.121066" />
+  <rect class="map_place" id="Route_11" height="8" width="23.970946" y="72.479419" x="103.849879" />
+  <rect class="map_place" id="Route_13" height="8" width="23.970947" y="88.217921" x="111.840195" />
+  <rect class="map_place" id="Route_16" height="8" width="23.970946" y="40.033897" x="47.675544" />
+  <rect class="map_place" id="Route_22" height="8" width="16.222763" y="64.246974" x="15.472156" />
+  <rect class="map_place" id="Route_15" height="8" width="15.496371" y="104.198547" x="87.869248" />
+  <rect class="map_place" id="Route_20" height="8" width="15.25424" y="119.937048" x="64.382568" />
+  <rect class="map_place" id="Route_18" height="8" width="31.961262" y="104.682811" x="47.675545" />
+  <rect class="map_place" id="Route_3" height="8" width="23.970946" y="24.537529" x="39.92736" />
+ </g>
+</svg>

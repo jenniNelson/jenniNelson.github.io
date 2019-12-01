@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" preserveAspectRatio="xMinYMin meet" viewBox="0 0 144 120">
+<!--<svg width="144" height="120" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">-->
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+ <!--<g>-->
+  <!--<title>background</title>-->
+  <!--<rect fill="#fff" id="canvas_background" height="122" width="146" y="-1" x="-1"/>-->
+ <!--</g>-->
+ <g>
+  <image y="0" href="data/map_data/Johto.png" height="120" width="144" x="0"/>
+  <rect class="map_place" id="Route_36" height="8.28877" width="24.331551" y="40.080213" x="47.802138"/>
+  <rect class="map_place" id="Route_29" height="8.28877" width="31.550804" y="79.919785" x="95.93048"/>
+  <rect class="map_place" id="Route_38" height="8.28877" width="23.529413" y="24.037432" x="32.026737"/>
+  <rect class="map_place" id="Route_42" height="8.28877" width="15.240642" y="24.037432" x="80.155081"/>
+  <rect class="map_place" id="Route_40" height="31.016042" width="8" y="40.080218" x="15.716577"/>
+  <rect class="map_place" id="Route_35" height="22.727271" width="8" y="48.636368" x="40.048127"/>
+  <rect class="map_place" id="Route_30" height="31.016042" width="8" y="48.636369" x="88.176469"/>
+  <rect class="map_place" id="Route_34" height="24" width="8" y="80.454551" x="39.780747"/>
+  <rect class="map_place" id="Route_32" height="55.347594" width="8" y="48.368989" x="71.866311"/>
+  <rect class="map_place" id="Route_39" height="15.508019" width="8" y="24.304817" x="24.005347"/>
+  <rect class="map_place" id="Route_46" height="23.79679" width="8" y="56.122999" x="111.973267"/>
+  <rect class="map_place" id="Route_45" height="31.283423" width="8" y="32.326207" x="119.994653"/>
+  <rect class="map_place" id="Route_43" height="7.754008" width="8" y="16.016047" x="95.930482"/>
+  <rect class="map_place" id="Route_33" height="8" width="8" y="103.716585" x="64.112298"/>
+  <rect class="map_place" id="Route_31" height="8" width="15.486631" y="40.080221" x="80.155077"/>
+  <rect class="map_place" id="Route_44" height="8" width="15.486631" y="23.770059" x="104.219248"/>
+  <rect class="map_place" id="Route_37" height="8" width="8" y="31.791452" x="55.823527"/>
+  <rect class="map_place" id="Route_41" height="8" width="8" y="79.919792" x="15.983956"/>
+
+  <ellipse class="map_place" id="Mt_Mortar" ry="5" rx="5" cy="28.048127" cx="75.743316"/>
+  <ellipse class="map_place" id="Lake_of_Rage" ry="5" rx="5" cy="12.005346" cx="99.807488"/>
+  <ellipse class="map_place" id="Dragons_Den" ry="5" rx="5" cy="20.026736" cx="124.139037"/>
+  <ellipse class="map_place" id="Silver_Cave" ry="5" rx="5" cy="52.1123" cx="139.914443"/>
+  <ellipse class="map_place" id="Ruins_of_Alph" ry="5" rx="5" cy="59.866309" cx="67.721925"/>
+  <ellipse class="map_place" id="National_Park" ry="5" rx="5" cy="44.358289" cx="43.925134"/>
+  <ellipse class="map_place" id="Union_Cave" ry="5" rx="5" cy="107.727273" cx="76.010695"/>
+  <ellipse class="map_place" id="Whirl_Islands" ry="5" rx="5" cy="75.641713" cx="19.593581"/>
+
+  <rect class="map_place" id="Azalea_Town" height="9" width="9" y="103.449205" x="55.556148"/>
+  <rect class="map_place" id="Ilex_Forest" height="9" width="15" y="103.449205" x="40"/>
+  <rect class="map_place" id="Cherrygrove_City" height="9" width="9" y="79.652412" x="87.37433"/>
+  <rect class="map_place" id="Clanwood_City" height="9" width="9" y="79.385034" x="7.160426"/>
+  <rect class="map_place" id="Goldenrod_City" height="9" width="9" y="71.363642" x="39.513366"/>
+  <rect class="map_place" id="New_Bark_Town" height="9" width="9" y="79.385034" x="127.48128"/>
+  <rect class="map_place" id="Blackthorn_City" height="9" width="9" y="23.77006" x="119.192512"/>
+  <rect class="map_place" id="Mahogany_Town" height="9" width="9" y="23.50268" x="95.395721"/>
+  <rect class="map_place" id="Olivine_City" height="9" width="9" y="40.080221" x="23.470584"/>
+  <rect class="map_place" id="Violet_City" height="9" width="9" y="39.278078" x="71.331549"/>
+  <rect class="map_place" id="Ecruteak_City" height="9" width="9" y="23.2353" x="55.288768"/>
+ </g>
+</svg>

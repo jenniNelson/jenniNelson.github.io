@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" preserveAspectRatio="xMinYMin meet" viewBox="0 0 257 159">
+
+  <!--<image x="0" y="0" href="Hoenn.png" height="159" width="257"/>-->
+  <image x="0" y="0" href="data/map_data/Hoenn.png" height="159" width="257"/>
+  <rect class="map_place" id="Route_101" height="7.886435" width="7.570977" y="96.315457" x="40"/>
+  <rect class="map_place" id="Route_102" height="7.886435" width="15.141955" y="88.113565" x="24.227129"/>
+  <rect class="map_place" id="Route_103" height="7.886435" width="31.545738" y="80.22713" x="40"/>
+  <rect class="map_place" id="Route_104" height="19.242902" width="7.570977" y="72.025236" x="8.138803"/>
+  <rect class="map_place" id="Route_105" height="28.706622" width="7.570977" y="91.89905" x="8.138803"/>
+  <rect class="map_place" id="Route_106" height="7.886435" width="23.659305" y="120.29022" x="8.138802"/>
+  <rect class="map_place" id="Route_107" height="7.886435" width="22.082016" y="128.176654" x="31.79811"/>
+  <rect class="map_place" id="Route_108" height="7.886435" width="25.55205" y="128.176655" x="54.19558"/>
+  <rect class="map_place" id="Route_109" height="16.088327" width="7.570977" y="111.77287" x="72.176654"/>
+  <rect class="map_place" id="Route_110" height="23.028389" width="7.570977" y="72.340698" x="72.176654"/>
+  <rect class="map_place" id="Route_111" height="47.949524" width="7.570977" y="16.189273" x="72.176654"/>
+  <rect class="map_place" id="Route_117" height="7.886435" width="23.343847" y="64.454261" x="48.832814"/>
+  <rect class="map_place" id="Route_113" height="7.886435" width="32.176654" y="16.189282" x="39.684539"/>
+  <g class="map_place" id="Route_114">
+    <rect height="23.343848" width="8" y="16.189281" x="16.025239"/>
+    <rect height="8" width="8" y="16.189281" x="24"/>
+  </g>
+  <rect class="map_place" id="Route_115" height="23.659305" width="7.570977" y="31.962146" x="8.45426"/>
+  <rect class="map_place" id="Route_116" height="7.886435" width="30.914822" y="55.936911" x="16.340696"/>
+  <rect class="map_place" id="Route_118" height="7.886435" width="16.403785" y="64.138804" x="87.949529"/>
+  <rect class="map_place" id="Route_119" height="47.318609" width="7.570977" y="16.504725" x="96.151417"/>
+  <rect class="map_place" id="Route_120" height="31.230282" width="7.570977" y="16.18928" x="111.924286"/>
+  <rect class="map_place" id="Route_121" height="7.886435" width="31.861194" y="40.164041" x="119.810727"/>
+  <rect class="map_place" id="Route_122" height="15.141955" width="7.570977" y="48.681391" x="135.58359"/>
+  <rect class="map_place" id="Route_123" height="7.886435" width="39.116716" y="63.823346" x="104.668743"/>
+  <rect class="map_place" id="Route_124" height="23.659305" width="32" y="40.164043" x="168.391154"/>
+  <rect class="map_place" id="Route_125" height="16" width="15.318609" y="40.479498" x="200.315457"/>
+
+  <rect class="map_place" id="Route_127" height="24" width="15.318609" y="64" x="200.315457"/>
+  <rect class="map_place" id="Route_128" height="7.886435" width="22.889586" y="88.113563" x="200.315456"/>
+  <g class="map_place" id="Route_126">
+   <rect id="svg_35" height="7.886435" width="32" y="64" x="168.391154"/>
+   <rect id="svg_40" height="7.886435" width="32" y="79.77287" x="168.391154"/>
+   <rect id="svg_41" height="7.886435" width="8" y="71.886435" x="168.391158"/>
+   <rect id="svg_42" height="7.886435" width="16" y="71.886435" x="184"/>
+   <rect id="svg_45" height="7.886435" width="8" y="87.630915" x="192"/>
+  </g>
+  <rect class="map_place" id="Route_129" height="7.886435" width="27.444793" y="96.315457" x="188.264958"/>
+  <rect class="map_place" id="Route_130" height="7.886435" width="19.873817" y="96.315457" x="168.391139"/>
+  <rect class="map_place" id="Route_131" height="7.886435" width="8" y="96.315457" x="152.302812"/>
+  <rect class="map_place" id="Route_132" height="7.886435" width="21" y="96.315457" x="122.649805"/>
+  <rect class="map_place" id="Route_133" height="7.886435" width="21" y="96.315457" x="101.514159"/>
+  <rect class="map_place" id="Route_134" height="7.886435" width="21" y="96.315457" x="80.063056"/>
+  <ellipse class="map_place" id="Petalburg_City" ry="5" rx="5" cy="92.118296" cx="20.031542"/>
+  <ellipse class="map_place" id="Oldale_Town" ry="5" rx="5" cy="92.433753" cx="43.690846"/>
+  <ellipse class="map_place" id="Verdanturf_Town" ry="5" rx="5" cy="67.828076" cx="44.006304"/>
+  <ellipse class="map_place" id="Littleroot_Town" ry="5" rx="5" cy="108.206623" cx="43.690846"/>
+  <ellipse class="map_place" id="Dewford_Town" ry="5" rx="5" cy="132.181385" cx="27.917977"/>
+  <ellipse class="map_place" id="Lavaridge_Town" ry="5" rx="5" cy="43.853314" cx="51.89274"/>
+  <ellipse class="map_place" id="Fallarbor_Town" ry="5" rx="5" cy="19.87855" cx="36.119869"/>
+  <ellipse class="map_place" id="Fortree_City" ry="5" rx="5" cy="19.87855" cx="108.044153"/>
+  <ellipse class="map_place" id="Pacifidlog_Town" ry="5" rx="5" cy="100.004731" cx="147.791788"/>
+  <ellipse class="map_place" id="Sootopolis_City" ry="5" rx="5" cy="76.029968" cx="180.283892"/>
+  <rect class="map_place" id="Rustboro_City" rx="5" height="17.981071" width="8.832807" y="55.305996" x="7.507889"/>
+  <rect class="map_place" id="Slateport_City" rx="5" height="17.981071" width="8.832807" y="94.73817" x="71.230282"/>
+  <rect class="map_place" id="EverGrande_City" rx="5" height="17.981071" width="8.832807" y="78.9653" x="223.596199"/>
+  <rect class="map_place" id="Mauville_City" transform="rotate(90 79.4322 68.082)" rx="5" height="17.981071" width="8.832807" y="59.091485" x="75.01577"/>
+  <rect class="map_place" id="Lilycove_City" transform="rotate(90 159.558 44.1072)" rx="5" height="17.981071" width="8.832807" y="35.116723" x="155.141945"/>
+  <rect class="map_place" id="Mossdeep_City" transform="rotate(90 208.139 60.1956)" rx="5" height="17.981071" width="8.832807" y="51.20505" x="203.722383"/>
+  <ellipse class="map_place" id="Sky_Pillar" ry="5" rx="5" cy="100.320187" cx="164.511029"/>
+  <ellipse class="map_place" id="Battle_Frontier" ry="6.26183" rx="5" cy="118.301259" cx="187.22396"/>
+  <ellipse class="map_place" id="Southern_Island" ry="5" rx="5" cy="132.496842" cx="108.044155"/>
+  <ellipse class="map_place" id="Safari_Zone" ry="5" rx="5" cy="35.966881" cx="139.589896"/>
+  <rect class="map_place" id="Route_112" height="7.886435" width="16.088327" y="39.848583" x="56.088333"/>
+  <rect class="map_place" id="Mt_Chimney" rx="5" height="17" width="17" y="23.760257" x="55.77287"/>
+</svg>

@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" preserveAspectRatio="xMinYMin meet" viewBox="0 0 1032 674">
+
+  <!--<image y="0" x="0" href="Kalos.png" height="676" width="1032"/>-->
+  <image y="0" x="0" href="data/map_data/Kalos.png" height="676" width="1032"/>
+
+  <rect class="map_place" id="Route_1" height="28" width="18" y="493.5" x="684"/>
+  <rect class="map_place" id="Route_2" height="23.000001" width="18" y="445.499999" x="682"/>
+  <rect class="map_place" transform="rotate(-24 672 399)" id="Route_3" height="41.000002" width="18" y="378.499999" x="663"/>
+  <rect class="map_place" transform="translate(570.688 267.766) scale(1.01294 1.12393) translate(-570.688 -267.766) matrix(0.998029 -0.0627615 0.0627615 0.998029 -18.1362 38.8493) matrix(0.890178 -0.375205 0.453568 0.736382 -73.5685 305.934)" id="Route_4" height="90" width="35.107951" y="269.427304" x="586.972826"/>
+  <rect class="map_place" transform="translate(541.244 373.185) scale(1.04524 0.980531) translate(-541.244 -373.185) matrix(0.992173 -0.12487 0.12487 0.992173 -36.3888 65.0971) matrix(0.720282 0.577478 -0.534234 0.778586 317.395 -212.802)" id="Route_5" height="106.787531" width="23" y="263.587761" x="488.447215"/>
+  <rect class="map_place" transform="matrix(0.715074 -0.699048 0.699048 0.715074 -125.291 376.139)" id="Route_6" height="76" width="19.042557" y="303.052183" x="389.95023"/>
+  <rect class="map_place" transform="translate(298.335 396.663) scale(1 0.885032) translate(-298.335 -396.663) translate(415.428 361.871) scale(1.21804 1) translate(-415.428 -361.871) translate(309.157 363.146) scale(0.960093 0.72482) translate(-309.157 -363.146) matrix(0.539895 -0.841733 0.841733 0.539895 -160.251 480.365) matrix(0.925517 -0.866884 0.904775 0.886758 -281.69 366.186)" id="Route_7" height="76" width="19.042557" y="328.341891" x="332.223373"/>
+  <g class="map_place"  id="Route_8">
+    <rect class="map_place" transform="rotate(13.0584 287.5 435)" height="93" width="19" y="388.5" x="278"/>
+    <rect class="map_place" transform="rotate(-19.2752 237.5 432)" height="93" width="19" y="385.5" x="228"/>
+  </g>
+  <rect class="map_place" transform="matrix(0.0412794 0.999148 -0.999148 0.0412794 811.993 124.734)" id="Route_9" height="118.019965" width="19" y="426.473609" x="331.499342"/>
+  <rect class="map_place" transform="rotate(-61.8962 179.5 360)" id="Route_10" height="93" width="19" y="313.5" x="170"/>
+  <rect class="map_place" transform="matrix(0.820474 0.571684 -0.571684 0.820474 201.391 -18.7042)" id="Route_11" height="26.446358" width="19" y="298.079588" x="120.976178"/>
+  <rect class="map_place" transform="rotate(2.81497 275.799 213.128) matrix(0.391558 0.920153 -0.920153 0.391558 363.918 -124.102)" id="Route_12" height="174.071419" width="19" y="126.092197" x="266.29907"/>
+  <rect class="map_place" transform="rotate(1.30143 439.027 206.693) matrix(-0.26036 0.965511 -0.965511 -0.26036 755.792 -159.597)" id="Route_13" height="152.091418" width="19" y="134.42792" x="426.630202"/>
+  <rect class="map_place" id="Route_14" height="88" width="21" y="110.5" x="547"/>
+  <rect class="map_place" transform="rotate(2.64195 643.73 141.085) matrix(0.458616 -0.888634 0.888634 0.458616 224.214 650.199)" id="Route_15" height="158.7865" width="19" y="59.914894" x="635.312826"/>
+  <rect class="map_place" transform="matrix(0.277322 0.960777 -0.960777 0.277322 680.112 -474.835)" id="Route_16" height="105.083969" width="19" y="162.133603" x="646.195"/>
+  <rect class="map_place" transform="matrix(0.403728 -0.914879 0.914879 0.403728 275.341 887.312)" id="Route_17" height="149.589115" width="19" y="157.628741" x="808.886098"/>
+  <rect class="map_place" transform="matrix(0.499722 -0.866186 0.866186 0.499722 215.088 966.178)" id="Route_18" height="52.522483" width="19" y="270.62499" x="934.469474"/>
+  <rect class="map_place" transform="rotate(61.2438 930.5 336)" id="Route_19" height="93" width="19" y="289.5" x="921"/>
+  <rect class="map_place" transform="matrix(0.97414 0.225944 -0.225944 0.97414 118.184 -183.884)" id="Route_20" height="92.251802" width="19" y="378.238521" x="852.915478"/>
+  <rect class="map_place" transform="matrix(-0.259324 0.96579 -0.96579 -0.259324 1380.62 -355.118)" id="Route_21" height="76.393746" width="19" y="313.649906" x="816.980887"/>
+  <rect class="map_place" transform="matrix(0.174548 0.984649 -0.984649 0.174548 937.357 -421.216)" id="Route_22" height="98.272334" width="19" y="297.878318" x="713.707334"/>
+  <ellipse class="map_place"  ry="16" rx="16" id="Vaniville_Town" cy="531" cx="694.5"/>
+  <ellipse class="map_place"  ry="16" rx="16" id="Aquacorde_Town" cy="479" cx="691.5"/>
+  <ellipse class="map_place"  ry="16" rx="16" id="Santalune_Forest" cy="431" cx="686.5"/>
+  <ellipse class="map_place"  ry="20.999999" rx="20.999999" id="Santalune_City" cy="367.999999" cx="650.499999"/>
+  <ellipse class="map_place"  ry="42.499998" rx="46.499998" id="Lumiose_City" cy="242.500002" cx="558.000002"/>
+  <ellipse class="map_place"  ry="24.000001" rx="28.500001" id="Camphrier_Town" cy="373.999999" cx="453.999999"/>
+  <ellipse class="map_place"  ry="29.500001" rx="33.5" id="Parfum_Palace" cy="309.499999" cx="342"/>
+  <ellipse class="map_place"  ry="16" rx="16" id="Berry_Fields" cy="391" cx="400.5"/>
+  <ellipse class="map_place"  ry="16" rx="16" id="Battle_Chateau" cy="360" cx="297.5"/>
+  <ellipse class="map_place"  ry="13" rx="12.5" id="Connecting_Cave" cy="390" cx="300"/>
+  <ellipse class="map_place"  ry="16" rx="20" id="Ambbrette_Town" cy="489" cx="263.5"/>
+  <ellipse class="map_place"  ry="16" rx="16" id="Glittering_Cave" cy="481" cx="416.5"/>
+  <ellipse class="map_place"  ry="17" rx="22.5" id="Geosenge_Town" cy="333" cx="118"/>
+  <ellipse class="map_place"  transform="matrix(0.969474 -0.511562 0.539307 0.919598 -195.905 140.633)" ry="21.5" rx="18.279965" id="Cyllage_City" cy="380.822298" cx="212.123001"/>
+  <ellipse class="map_place"  ry="35" rx="28" id="Shalour_City" cy="266" cx="172.5"/>
+  <ellipse class="map_place"  ry="13" rx="13.5" id="Reflection_Cave" cy="298" cx="145"/>
+  <ellipse class="map_place"  ry="16" rx="16" id="Coumarine_City" cy="182" cx="362.5"/>
+  <ellipse class="map_place"  ry="16" rx="16" id="Sea_Spirits_Den" cy="117" cx="279.5"/>
+  <rect class="map_place" transform="matrix(0.63193 -0.775025 0.775025 0.63193 1.84792 304.514)" id="Azure_Bay" height="74.995771" width="19" y="112.813408" x="312.023134"/>
+  <ellipse class="map_place"  ry="16" rx="16" id="Kalos_Power_Plant" cy="187" cx="439.5"/>
+  <ellipse class="map_place"  ry="20.5" rx="21" id="Laverre_City" cy="99.5" cx="557.5"/>
+  <ellipse class="map_place"  ry="16" rx="16" id="Poke_Ball_Factory" cy="57" cx="556.5"/>
+  <ellipse class="map_place"  ry="16" rx="16" id="Lost_Hotel" cy="148" cx="698.5"/>
+  <ellipse class="map_place"  ry="24" rx="24.5" id="Dendemille_Town" cy="191" cx="731"/>
+  <ellipse class="map_place"  ry="16" rx="16" id="Frost_Cavern" cy="120" cx="796.5"/>
+  <ellipse class="map_place"  ry="24" rx="25" id="Anistar_City" cy="270" cx="904.5"/>
+  <ellipse class="map_place"  ry="16" rx="21.5" id="Terminus_Cave" cy="213" cx="974"/>
+  <ellipse class="map_place"  ry="16" rx="16" id="Couriway_Town" cy="311" cx="985.5"/>
+  <ellipse class="map_place"  ry="19" rx="19" id="Snowbelle_City" cy="368.5" cx="878"/>
+  <ellipse class="map_place"  ry="16" rx="16" id="Pokemon_Village" cy="479" cx="850.5"/>
+  <ellipse class="map_place"  ry="16" rx="16" id="Victory_Road" cy="337" cx="780.5"/>
+  <ellipse class="map_place"  ry="26.5" rx="24" id="Pokemon_League" cy="271.5" cx="779.5"/>
+</svg>

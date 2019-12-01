@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" preserveAspectRatio="xMinYMin meet" viewBox="0 0 250 164">
+ <g>
+ <!--<image x="0" y="0" href="Unova_2.png" height="164" width="250"/>-->
+ <image x="0" y="0" href="data/map_data/Unova_2.png" height="164" width="250"/>
+ <rect class="map_place" id="Route_1" height="8.919215" width="3" y="140.380681" x="224.725428"/>
+ <rect class="map_place" id="Route_2" transform="rotate(-7.61766 225.062 124.287)" height="8.919215" width="3" y="119.827708" x="223.562053"/>
+ <rect class="map_place" id="Route_3" height="3" width="12.113111" y="113.623037" x="204.366354"/>
+ <rect class="map_place" id="Route_4" height="26.267515" width="3" y="94.233465" x="127.389652"/>
+ <rect class="map_place" id="Route_5" height="3" width="11.919215" y="87.447082" x="111.296288"/>
+ <rect class="map_place" id="Route_6" transform="matrix(0.777708 0.56481 -0.555962 0.790084 53.97 -14.9306)" height="3" width="29.875445" y="74.512073" x="41.085842"/>
+ <rect class="map_place" id="Route_7" transform="rotate(-72.1148 55.2802 53.8883) matrix(0.777708 0.56481 -0.555962 0.790084 53.97 -14.9306)" height="3" width="29.875445" y="55.347435" x="27.38557"/>
+ <rect class="map_place" id="Route_8" height="3" width="14.245966" y="40.718152" x="77.752288"/>
+ <rect class="map_place" id="Route_9" height="3" width="10.755839" y="40.524257" x="111.49018"/>
+ <rect class="map_place" id="Route_10" height="3" width="20.25674" y="28.696602" x="133.012641"/>
+ <rect class="map_place" id="Route_11" height="3" width="11.919215" y="40.33036" x="135.339374"/>
+ <rect class="map_place" id="Route_12" height="3" width="13.470383" y="40.524257" x="165.781047"/>
+ <rect class="map_place" id="Route_13" transform="matrix(0.777708 0.56481 -0.555962 0.790084 53.97 -14.9306)" height="3" width="29.875445" y="-33.292409" x="152.752502"/>
+ <rect class="map_place" id="Route_14" transform="rotate(-70.2399 202.641 77.3496) matrix(0.777708 0.56481 -0.555962 0.790084 53.97 -14.9306)" height="3" width="29.875445" y="-14.644038" x="166.83166"/>
+ <rect class="map_place" id="Route_15" height="3" width="13.276487" y="87.447081" x="166.168849"/>
+ <rect class="map_place" id="Route_16" height="3" width="11.143631" y="87.253186" x="135.339379"/>
+ <rect class="map_place" id="Route_17" height="3" width="7.653503" y="152.790024" x="212.703883"/>
+ <rect class="map_place" id="Route_18" height="3" width="14.827654" y="152.790023" x="197.580004"/>
+ <rect class="map_place" id="Skyarrow_Bridge" transform="rotate(-8.34194 160.98 119.195)" height="3" width="40.809714" y="117.694853" x="140.57467"/>
+ <rect class="map_place" id="Driftveil_Drawbridge" height="3" width="17.154406" y="85.12033" x="93.263951"/>
+ <rect class="map_place" id="Tubeline_Bridge" height="3" width="16.572718" y="38.585299" x="93.263954"/>
+ <rect class="map_place" id="Village_Bridge" height="3" width="16.96051" y="38.391401" x="148.136498"/>
+ <rect class="map_place" id="Marvelous_Bridge" height="3" width="16.572717" y="85.314226" x="147.360937"/>
+ <rect class="map_place" id="Desert_Resort" height="3" width="11.725319" y="100.244215" x="115.56199"/>
+ <ellipse class="map_place" id="Nuvema_Town" ry="6" rx="6" cy="154.244243" cx="226.664388"/>
+ <ellipse class="map_place" id="Accumula_Town" ry="6" rx="6" cy="134.660751" cx="226.276596"/>
+ <ellipse class="map_place" id="Striaton_City" ry="6" rx="6" cy="115.658946" cx="222.592573"/>
+ <ellipse class="map_place" id="Nacrene_City" ry="6" rx="6" cy="115.271154" cx="197.967785"/>
+ <ellipse class="map_place" id="Castella_City" ry="6" rx="6" cy="127.098809" cx="128.746922"/>
+ <ellipse class="map_place" id="Numbasa_City" ry="6" rx="6" cy="88.901303" cx="128.553026"/>
+ <ellipse class="map_place" id="Driftveil_City" ry="6" rx="6" cy="88.901303" cx="71.935403"/>
+ <ellipse class="map_place" id="Mistralton_City" ry="6" rx="6" cy="65.633786" cx="38.585298"/>
+ <ellipse class="map_place" id="Icirrus_City" ry="6" rx="6" cy="41.978477" cx="71.741509"/>
+ <ellipse class="map_place" id="Opelucid_City" ry="6" rx="6" cy="42.366269" cx="128.553028"/>
+ <ellipse class="map_place" id="Lacunosa_Town" ry="6" rx="6" cy="42.366269" cx="185.170651"/>
+ <ellipse class="map_place" id="Undella_Town" ry="6" rx="6" cy="65.827682" cx="218.326861"/>
+ <ellipse class="map_place" id="White_Forest" ry="6" rx="6" cy="89.095199" cx="185.558443"/>
+ <ellipse class="map_place" id="Victory_Road" ry="4" rx="4" cy="23.170572" cx="158.800799"/>
+ <ellipse class="map_place" id="Pokemon_League" ry="6" rx="6" cy="14.833045" cx="165.199366"/>
+ <ellipse class="map_place" id="P2_Laboratory" ry="3" rx="3" cy="147.263988" cx="216.775694"/>
+ <ellipse class="map_place" id="Dreamyard" ry="3" rx="3" cy="114.883361" cx="233.062956"/>
+ <ellipse class="map_place" id="Wellspring_Cave" ry="3" rx="3" cy="107.321418" cx="209.601543"/>
+ <ellipse class="map_place" id="Pinwheel_Forest" ry="3" rx="3" cy="122.057511" cx="189.436361"/>
+ <ellipse class="map_place" id="Relic_Castle" ry="3" rx="3" cy="101.89233" cx="112.265766"/>
+ <ellipse class="map_place" id="Entralink" ry="3" rx="3" cy="65.439889" cx="128.940817"/>
+ <ellipse class="map_place" id="Cold_Storage" ry="3" rx="3" cy="100.535058" cx="72.129297"/>
+ <ellipse class="map_place" id="Mistralton_Cave" ry="3" rx="3" cy="72.032349" cx="66.894106"/>
+ <ellipse class="map_place" id="Chargestone_Cave" ry="3" rx="3" cy="78.043124" cx="41.299837"/>
+ <ellipse class="map_place" id="Celestial_Tower" ry="3" rx="3" cy="48.764833" cx="52.7397"/>
+ <ellipse class="map_place" id="Twist_Mountain" ry="3" rx="3" cy="54.000024" cx="69.60865"/>
+ <ellipse class="map_place" id="Dragonspiral_Tower" ry="3" rx="3" cy="29.956923" cx="64.567354"/>
+ <ellipse class="map_place" id="Moor_of_Icirrus" ry="3" rx="3" cy="34.998219" cx="85.50812"/>
+ <ellipse class="map_place" id="Challengers_Cave" ry="3" rx="3" cy="47.989251" cx="114.010827"/>
+ <ellipse class="map_place" id="Giant_Chasm" ry="3" rx="3" cy="30.150823" cx="193.120383"/>
+ <ellipse class="map_place" id="Abundant_Shrine" ry="3" rx="3" cy="75.134687" cx="191.763112"/>
+ <ellipse class="map_place" id="Poke_Transfer_Lab" ry="3" rx="3" cy="82.114942" cx="172.17962"/>
+ <ellipse class="map_place" id="Lostlorn_Forest" ry="3" rx="3" cy="82.114943" cx="142.319639"/>
+ <ellipse class="map_place" id="Unity_Tower" ry="3" rx="3" cy="153.080865" cx="96.56019"/>
+ <ellipse class="map_place" id="Liverty_Garden" ry="3" rx="3" cy="141.059315" cx="71.741505"/>
+ <ellipse class="map_place" id="Undella_Bay" ry="3" rx="3" cy="66.603265" cx="241.788273"/>
+ <ellipse class="map_place" id="Anville_Town" ry="3" rx="3" cy="28.85332" cx="6.718366"/>
+ </g>
+</svg>

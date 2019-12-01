@@ -1,5 +1,5 @@
 body, button{
-    font-family: "Gill Sans", "sans-serif";
+    font-family: "Gill Sans", sans-serif;
 }
 
 thead,
@@ -10,6 +10,35 @@ tbody {
 tbody {
   height: 400px;
   overflow: auto;
+}
+
+ul.top_matter {
+    background-color: #bfbfbf;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    width: 1800px;
+}
+
+.top_matter li {
+  display: inline-block;
+  text-align: center;
+  padding: 3px 13px;
+  text-decoration: none;
+}
+
+.title {
+    background-color: #6d6e6e;
+    color: white;
+}
+
+.authors {
+
+}
+
+.emails {
+
 }
 
 #pokedex td {
@@ -43,7 +72,9 @@ table.sortable thead {
     cursor: default;
 }
 
-
+.map_card{
+    width:250px;
+}
 .map_img {
   display: block;
   margin-left: auto;
@@ -210,6 +241,7 @@ background-color: #ccc;
 
 /* Style the tab content */
 .tabcontent {
+    width:500px;
 display: none;
 padding: 6px 12px;
 border: 1px solid #ccc;

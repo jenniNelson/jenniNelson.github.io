@@ -142,7 +142,7 @@ class Matchups{
             pane.select("select").selectAll("option").data(this.mons).join("option")
                 .property("selected", d=>d.long_id === this.card_manager.team[j])
                 .attr("value", d=>d.long_id)
-                .text( d => d.name + " (#" + d.long_id + ")");
+                .text(d => (d.long_id === "whodat")?"(No Selection)":(d.name + " (#" + d.long_id + ")"));
 
             pane.append("svg")
                 .attr("id", "tb_svg_" + j)
@@ -645,27 +645,47 @@ class Matchups{
             .append("title")
             .text("Rough average across all evolved Pokemon");
 
-        mark_group.selectAll("g").data(mons).join("g")
-            .attr("title", d=>d.name)
-            .selectAll("circle").data(d=>[
-            {name:d.name,stat:d.hp,type:d.type1},
-            {name:d.name,stat:d.attack,type:d.type1},
-            {name:d.name,stat:d.defense,type:d.type1},
-            {name:d.name,stat:d.sp_attack,type:d.type1},
-            {name:d.name,stat:d.sp_defense,type:d.type1},
-            {name:d.name,stat:d.speed,type:d.type1}
+        let mon_groups = mark_group.selectAll("g").data(mons).join("g");
+
+        mon_groups.selectAll("line").data((d,i) => [
+            {name:d.name,stat:d.hp,         stat2:d.attack,         type:d.type1, index: i},
+            {name:d.name,stat:d.attack,     stat2:d.defense,     type:d.type1, index: i},
+            {name:d.name,stat:d.defense,    stat2:d.sp_attack,    type:d.type1, index: i},
+            {name:d.name,stat:d.sp_attack,  stat2:d.sp_defense,  type:d.type1, index: i},
+            {name:d.name,stat:d.sp_defense, stat2:d.speed, type:d.type1, index: i},
+            {name:d.name,stat:d.speed,      stat2:d.speed,      type:d.type1, index: i}
+        ]).join("line")
+            .attr("class" , d=> "l_" + d.index)
+            .style("opacity", 0)
+            .attr("x1", (d,i) => 60*i)
+            .attr("x2", (d,i) => 60*Math.min(i+1, 5))
+            .attr("y1", d=> this.reverse_stat_scale(d.stat))
+            .attr("y2", d=> this.reverse_stat_scale(d.stat2))
+            .attr("stroke", "#000000")
+            .attr("stroke-width", 2);
+
+        mon_groups.selectAll("ellipse").data((d,i)=>[
+            {name:d.name,stat:d.hp,type:d.type1, index: i},
+            {name:d.name,stat:d.attack,type:d.type1, index: i},
+            {name:d.name,stat:d.defense,type:d.type1, index: i},
+            {name:d.name,stat:d.sp_attack,type:d.type1, index: i},
+            {name:d.name,stat:d.sp_defense,type:d.type1, index: i},
+            {name:d.name,stat:d.speed,type:d.type1, index: i}
             ]).join("ellipse")
                 .attr("cx", (d,i) => 60*i)
                 .attr("cy", d => this.reverse_stat_scale(d.stat))
                 .attr("rx", 6)
                 .attr("ry", 3)
+                .attr("id", d=>"e_" + d.index)
                 .attr("fill", d => this.type_colors[d.type][0])
                 .attr("stroke", d => this.type_colors[d.type][1])
-                .attr("stroke-width", 2)
+                .attr("stroke-width", 1)
                 .style("opacity", 1)
                 .attr("cursor", "pointer")
+                .on("mouseover", d => {d3.selectAll(".l_" + d.index).style("opacity", 1)})
+                .on("mouseout", d => {d3.selectAll(".l_" + d.index).style("opacity", 0)})
                 .append("title")
-                    .text(d=>d.name + ", " + d.stat)
+                    .text(d=>d.name + ", " + d.stat);
 
         let label_group = chart_group.append("g").attr("transform","translate(45, 400)")
         label_group.selectAll("text").data(["HP","Attack","Defense","S. Attack", "S. Defense", "Speed"]).join("text")
@@ -676,7 +696,7 @@ class Matchups{
             .style("font-weight", "bold")
             .style("text-anchor", "end");
 
-        chart_group.append("text").attr("x", 370).attr("y", 30)
+        chart_group.append("text").attr("x", 370).attr("y", 32)
             .style("font-weight", "bold")
             .style("font-size", "14pt")
             .style("text-anchor", "end")
@@ -700,7 +720,7 @@ class Matchups{
             .attr("height", 20)
             .attr("href", d => "data/pokemon_data/typelabels/" + d + ".gif");
 
-        covered_group.append("text").attr("x", 15).attr("y", 15)
+        covered_group.append("text").attr("x", 15).attr("y", 17)
             .style("font-weight", "bold")
             .style("font-size", "14pt")
             .text("Types Covered:");
@@ -718,7 +738,7 @@ class Matchups{
             .attr("height", 20)
             .attr("href", d => "data/pokemon_data/typelabels/" + d + ".gif");
 
-        uncovered_group.append("text").attr("x", 15).attr("y", 15)
+        uncovered_group.append("text").attr("x", 15).attr("y", 17)
             .style("font-weight", "bold")
             .style("font-size", "14pt")
             .text("Types Not Yet Covered:");
@@ -736,7 +756,7 @@ class Matchups{
             .attr("height", 20)
             .attr("href", d => "data/pokemon_data/typelabels/" + d + ".gif");
 
-        weakness_group.append("text").attr("x", 15).attr("y", 15)
+        weakness_group.append("text").attr("x", 15).attr("y", 17)
             .style("font-weight", "bold")
             .style("font-size", "14pt")
             .text("Types Strong Against This Team:");
@@ -745,6 +765,7 @@ class Matchups{
 
 
 }
+
 
 function get_type_coverage(mons) {
     if(mons.length === 0) {

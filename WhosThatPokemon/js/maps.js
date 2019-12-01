@@ -267,59 +267,62 @@ class MapView {
 
             selection.attr("style", "border-radius:15px;background-color:" + type_colors[mon.type1][0])
 
-        let ordered_locations = Object.values(
-            mon.locations.filter(x => x.map === this.opened_map)
-            .reduce((accum, item) => {
-                if(! (item.place_id in accum) ){
-                    accum[item.place_id] = {games: new Set(), map: item.map, place: item.place, place_id: item.place_id};
-                }
-                let games_to_add = item.game in game_to_acro ? game_to_acro[item.game] : {text: item.game, id: "unknown"};
-                // console.log(games_to_add, item)
-                games_to_add.forEach(game_to_add => accum[item.place_id].games.add(game_to_add));
-                return accum;
-            }, {})).sort(location_sort);
+            let ordered_locations = Object.values(
+                mon.locations.filter(x => x.map === this.opened_map)
+                .reduce((accum, item) => {
+                    if(! (item.place_id in accum) ){
+                        accum[item.place_id] = {games: new Set(), map: item.map, place: item.place, place_id: item.place_id};
+                    }
+                    let games_to_add = item.game in game_to_acro ? game_to_acro[item.game] : {text: item.game, id: "unknown"};
+                    // console.log(games_to_add, item)
+                    games_to_add.forEach(game_to_add => accum[item.place_id].games.add(game_to_add));
+                    return accum;
+                }, {})).sort(location_sort);
 
 
-            poke_pic.append("circle")
-                .attr("cx", 60)
-                .attr("cy", 60)
-                .attr("r", 50)
-                .attr("fill", type_colors[mon.type1][1]);
+                poke_pic.append("circle")
+                    .attr("cx", 60)
+                    .attr("cy", 60)
+                    .attr("r", 50)
+                    .attr("fill", type_colors[mon.type1][1]);
 
-            poke_pic.append("image")
-                .attr("href","data/pokemon_data/sprites/" + mon.long_id + ".png")
-                .attr("x", 10)
-                .attr("y", 10)
-                .attr("height", 100)
-                .attr("width", 100);
+                poke_pic.append("image")
+                    .attr("href","data/pokemon_data/sprites/" + mon.long_id + ".png")
+                    .attr("x", 10)
+                    .attr("y", 10)
+                    .attr("height", 100)
+                    .attr("width", 100);
 
-            poke_pic.on("mouseover", () => this.highlight_pokemon_regions(ordered_locations))
-                    .on("mouseout", () => this.unhighlight_pokemon_regions(ordered_locations))
+                poke_pic.on("mouseover", () => this.highlight_pokemon_regions(ordered_locations))
+                        .on("mouseout", () => this.unhighlight_pokemon_regions(ordered_locations))
 
 
-            locs_td.append("div")
-                .text(mon.name);
-            let row = locs_td.append("div")
-                .attr("style", "height:100px;overflow:auto;")
-                .append("table")
-                .selectAll("tr")
-                .data(ordered_locations)
-                .join("tr")
-                .on("mouseover", d => this.highlight_region(d))
-                .on("mouseout", d => this.unhighlight_region(d))
-            row.append("td")
-                .text(d =>d.place)
-                .attr("title", d=> Array.from(d.games).reduce( (str, x)=> str + x.game + ", ", "").slice(0,-2));
+                locs_td.append("div")
+                    .text(mon.name);
+                let row = locs_td.append("div")
+                    .attr("style", "height:100px;overflow:auto;")
+                    .append("table")
+                    .selectAll("tr")
+                    .data(ordered_locations)
+                    .join("tr")
+                    .on("mouseover", d => this.highlight_region(d))
+                    .on("mouseout", d => this.unhighlight_region(d))
+                row.append("td")
+                    .text(d =>d.place)
+                    .attr("title", d=> Array.from(d.games).reduce( (str, x)=> str + x.game + ", ", "").slice(0,-2));
 
 
         } else {
-            poke_pic.append("rect")
-                .attr("x", 0)
-                .attr("y", 0)
-                .attr("height", 120)
-                .attr("width", 120)
-                .attr("rx", 10)
-                .attr("fill", type_colors["missing"][0]);
+
+            selection.attr("style", "border-radius:15px;background-color:" + type_colors["missing"][0])
+
+            // poke_pic.append("rect")
+            //     .attr("x", 0)
+            //     .attr("y", 0)
+            //     .attr("height", 120)
+            //     .attr("width", 120)
+            //     .attr("rx", 10)
+            //     .attr("fill", type_colors["missing"][0]);
 
             poke_pic.append("circle")
                 .attr("cx", 60)
@@ -333,6 +336,11 @@ class MapView {
                 .attr("y", 10)
                 .attr("height", 100)
                 .attr("width", 100);
+
+            locs_td.append("div")
+                .text("No Selection");
+            locs_td.append("div")
+                    .attr("style", "height:100px;overflow:auto;")
         }
 
     }

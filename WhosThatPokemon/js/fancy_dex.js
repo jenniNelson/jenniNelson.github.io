@@ -221,7 +221,7 @@ class FancyDex {
                 ,
                 {title:"#", field:"long_id", sorter:"number", width:20}
                 ,
-                {title:"Name", field:"name", widthGrow:2}
+                {title:"Name", field:"name", width:100}
                 ,
                 {title:"Base Stats", field:"perc_stat_total", width:75, formatter:"progress", formatterParams:{color:"#b1b1b1", legend:(x)=>"&nbsp;&nbsp;"+(x*this.max_stat_total/100).toFixed(0), legendAlign:'left'}}
                 ,
@@ -241,7 +241,7 @@ class FancyDex {
                 ,
                 {title:"T2", field:"type2", width:57, formatter:type_formatter}
                 ,
-                {title:"Gen", field:"gen_introduced", align:'center'}
+                {title:"Gen", field:"gen_introduced", align:'center', width:5}
             ]
         });
 
@@ -499,7 +499,7 @@ class FancyDex {
 
         let is_final_ev = row1.append("td")
             .append("svg").classed("filter_button", true)
-            .attr("width", 90)
+            .attr("width", 100)
             .attr("height", 20)
             .attr("id", "final_ev_filter")
         is_final_ev.append("rect")
@@ -516,14 +516,14 @@ class FancyDex {
         is_final_ev.append("image")
             .attr("href","data/x-icon.png")
             .attr("width", 19)
-            .attr("x", 68)
+            .attr("x", 78)
             .attr("y", 0)
             .on("click", clear_filter_final)
 
 
         let is_base_ev = row2.append("td")
             .append("svg").classed("filter_button", true)
-            .attr("width", 90)
+            .attr("width", 100)
             .attr("height", 20)
             .attr("id", "base_ev_filter")
         is_base_ev.append("rect")
@@ -541,14 +541,14 @@ class FancyDex {
         is_base_ev.append("image")
             .attr("href","data/x-icon.png")
             .attr("width", 19)
-            .attr("x", 68)
+            .attr("x", 78)
             .attr("y", 0)
             .on("click", clear_filter_base)
 
 
         let clear_ev = row3.append("td")
             .append("svg").classed("filter_button", true)
-            .attr("width", 90)
+            .attr("width", 100)
             .attr("height", 20)
             .on("click", clear_ev_filter)
         clear_ev.append("rect")
@@ -605,7 +605,7 @@ class FancyDex {
 
         let is_legend = row1.append("td")
             .append("svg").classed("filter_button", true)
-            .attr("width", 90)
+            .attr("width", 100)
             .attr("height", 20)
             .attr("id", "is_legend_filter")
         is_legend.append("rect")
@@ -623,7 +623,7 @@ class FancyDex {
 
         let is_not_legend = row2.append("td")
             .append("svg").classed("filter_button", true)
-            .attr("width", 90)
+            .attr("width", 100)
             .attr("height", 20)
             .attr("id", "is_not_legend_filter")
         is_not_legend.append("rect")
@@ -640,7 +640,7 @@ class FancyDex {
 
         let clear_legendary_filter = row3.append("td")
             .append("svg").classed("filter_button", true)
-            .attr("width", 90)
+            .attr("width", 10)
             .attr("height", 20)
             .on("click", ()=>toggle_legendary_filter(null))
         clear_legendary_filter.append("rect")

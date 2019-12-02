@@ -381,7 +381,7 @@ class Matchups{
             .attr("id", "vs_sum_svg");
 
         d3.select("#team_summary").append("svg")
-            .attr("height", 500)
+            .attr("height", 510)
             .attr("width", 900)
             .attr("id", "tb_sum_svg");
 

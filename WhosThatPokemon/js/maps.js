@@ -148,13 +148,13 @@ class MapView {
                 text: "Kalos",
                 image: "data/map_data/Kalos_annotated.svg"
             }
-            // ,
-            // alola: {
-            //     tab_id: "alola_button",
-            //     map_id: "alola",
-            //     text: "Alola",
-            //     image: "data/map_data/Alola.png"
-            // }
+            ,
+            alola: {
+                tab_id: "alola_button",
+                map_id: "alola",
+                text: "Alola",
+                image: "data/map_data/Alola_annotated.svg"
+            }
             };
         d3.select("#map_area").select(".tab").selectAll("button")
             .data(Object.values(gen_list))
@@ -279,37 +279,73 @@ class MapView {
                     return accum;
                 }, {})).sort(location_sort);
 
+            // let prior_evs = [];
+            // let prior_locs = [];
+            // let prior = mon.ev_from;
+            // while( prior.length > 0){
+            //     let priorp = this.loc_data[prior];
+            //     prior_evs.push(priorp);
+            //     prior = priorp.ev_from;
+            //     prior_locs.push(Object.values(
+            //         priorp.locations.filter(x => x.map === this.opened_map)
+            //         .reduce((accum, item) => {
+            //             if(! (item.place_id in accum) ){
+            //                 accum[item.place_id] = {games: new Set(), map: item.map, place: item.place, place_id: item.place_id};
+            //             }
+            //             let games_to_add = item.game in game_to_acro ? game_to_acro[item.game] : {text: item.game, id: "unknown"};
+            //             // console.log(games_to_add, item)
+            //             games_to_add.forEach(game_to_add => accum[item.place_id].games.add(game_to_add));
+            //             return accum;
+            //         }, {})).sort(location_sort)
+            //     )
+            // }
+            // console.log(prior_evs, prior_locs);
 
-                poke_pic.append("circle")
-                    .attr("cx", 60)
-                    .attr("cy", 60)
-                    .attr("r", 50)
-                    .attr("fill", type_colors[mon.type1][1]);
 
-                poke_pic.append("image")
-                    .attr("href","data/pokemon_data/sprites/" + mon.long_id + ".png")
-                    .attr("x", 10)
-                    .attr("y", 10)
-                    .attr("height", 100)
-                    .attr("width", 100);
+            poke_pic.append("circle")
+                .attr("cx", 60)
+                .attr("cy", 60)
+                .attr("r", 50)
+                .attr("fill", type_colors[mon.type1][1]);
 
-                poke_pic.on("mouseover", () => this.highlight_pokemon_regions(ordered_locations))
-                        .on("mouseout", () => this.unhighlight_pokemon_regions(ordered_locations))
+            poke_pic.append("image")
+                .attr("href","data/pokemon_data/sprites/" + mon.long_id + ".png")
+                .attr("x", 10)
+                .attr("y", 10)
+                .attr("height", 100)
+                .attr("width", 100);
+
+            poke_pic.on("mouseover", () => this.highlight_pokemon_regions(ordered_locations))
+                    .on("mouseout", () => this.unhighlight_pokemon_regions(ordered_locations))
 
 
-                locs_td.append("div")
-                    .text(mon.name);
-                let row = locs_td.append("div")
-                    .attr("style", "height:100px;overflow:auto;")
-                    .append("table")
-                    .selectAll("tr")
-                    .data(ordered_locations)
-                    .join("tr")
-                    .on("mouseover", d => this.highlight_region(d))
-                    .on("mouseout", d => this.unhighlight_region(d))
-                row.append("td")
-                    .text(d =>d.place)
-                    .attr("title", d=> Array.from(d.games).reduce( (str, x)=> str + x.game + ", ", "").slice(0,-2));
+            locs_td.append("div")
+                .text(mon.name);
+            let table = locs_td.append("div")
+                .attr("style", "height:100px;overflow:auto;")
+                .append("table")
+            let rows = table
+                .selectAll("tr")
+                .data(ordered_locations)
+                .join("tr")
+                .on("mouseover", d => this.highlight_region(d))
+                .on("mouseout", d => this.unhighlight_region(d))
+            rows.append("td")
+                .text(d =>d.place)
+                .attr("title", d=> Array.from(d.games).reduce( (str, x)=> str + x.game + ", ", "").slice(0,-2));
+
+            // for( let pr_ev in prior_evs){
+            //     for (let loc of prior_locs[pr_ev]){
+            //
+            //         let row = table
+            //             .append("tr")
+            //             .on("mouseover", d => this.highlight_region(d))
+            //             .on("mouseout", d => this.unhighlight_region(d))
+            //         row.append("td")
+            //             .text( loc.place + " (from " +prior_evs[pr_ev].name + ")")
+            //             .attr("title", Array.from(loc.games).reduce( (str, x)=> str + x.game + ", ", "").slice(0,-2));
+            //     }
+            // }
 
 
         } else {

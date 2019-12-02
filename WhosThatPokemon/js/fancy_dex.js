@@ -201,10 +201,10 @@ class FancyDex {
             return sumb-suma;
         }
 
-        // let stat_filter = function(MAX, headerValue, rowValue, rowData, filterParams){
-        //     console.log(MAX, headerValue, rowValue)
-        //     return headerValue*100/MAX >= rowValue
-        // }
+        let stat_filter = function(MAX, headerValue, rowValue, rowData, filterParams){
+            console.log(MAX, headerValue, rowValue)
+            return (+headerValue)*100/MAX <= rowValue
+        }
 
         this.fancydex = new Tabulator("#fancydex", {
             height: 600,
@@ -215,27 +215,27 @@ class FancyDex {
             // autoColumns:true
             initialSort:[{column:"long_id", dir:"asc"}],
             columns: [
-                {title:"Vs", field:"vs", width:48, dataLoaded:make_vs_buttons, formatter:make_vs_buttons, cellClick:check_callback_vs, sorter:check_sorter}
+                {title:"Vs", field:"vs", width:50, dataLoaded:make_vs_buttons, formatter:make_vs_buttons, cellClick:check_callback_vs, sorter:check_sorter}
                 ,
-                {title:"TB", field:"team", width:66,formatter:make_team_buttons, cellClick:check_callback_team, sorter:check_sorter}
+                {title:"TB", field:"team", width:70,formatter:make_team_buttons, cellClick:check_callback_team, sorter:check_sorter}
                 ,
-                {title:"#", field:"long_id", sorter:"number", width:20}
+                {title:"#", field:"long_id", sorter:"number", headerFilter:"input",headerFilterPlaceholder:"Search", width:20}
                 ,
-                {title:"Name", field:"name", width:100}
+                {title:"Name", field:"name", headerFilter:"input",headerFilterPlaceholder:"Search", width:100}
                 ,
-                {title:"Base Stats", field:"perc_stat_total", width:75, formatter:"progress", formatterParams:{color:"#b1b1b1", legend:(x)=>"&nbsp;&nbsp;"+(x*this.max_stat_total/100).toFixed(0), legendAlign:'left'}}
+                {title:"Base Stats", field:"perc_stat_total", width:75, headerFilter:"number", headerFilterPlaceholder:"at least", headerFilterFunc:(h,r)=>(+h)*100/this.max_stat_total<=r, formatter:"progress", formatterParams:{color:"#b1b1b1", legend:(x)=>"&nbsp;&nbsp;"+(x*this.max_stat_total/100).toFixed(0), legendAlign:'left'}}
                 ,
-                {title:"HP", field:"perc_hp", align:"left", width:75, formatter:"progress", formatterParams:{color:stat_bar_colors[0], legend:(x)=>"&nbsp;&nbsp;"+(x*this.max_hp/100).toFixed(0), legendAlign:'left'}}
+                {title:"HP", field:"perc_hp", align:"left", width:75, headerFilter:"number", headerFilterPlaceholder:"at least", headerFilterFunc:(h,r)=>(+h)*100/this.max_hp<=r, formatter:"progress", formatterParams:{color:stat_bar_colors[0], legend:(x)=>"&nbsp;&nbsp;"+(x*this.max_hp/100).toFixed(0), legendAlign:'left'}}
                 ,
-                {title:"Atk", field:"perc_attack", align:"left", width:75, formatter:"progress", formatterParams:{color:stat_bar_colors[1], legend:(x)=>"&nbsp;&nbsp;"+(x*this.max_attack/100).toFixed(0), legendAlign:'left'}}
+                {title:"Atk", field:"perc_attack", align:"left", width:75, headerFilter:"number", headerFilterPlaceholder:"at least", headerFilterFunc:(h,r)=>(+h)*100/this.max_attack<=r, formatter:"progress", formatterParams:{color:stat_bar_colors[1], legend:(x)=>"&nbsp;&nbsp;"+(x*this.max_attack/100).toFixed(0), legendAlign:'left'}}
                 ,
-                {title:"Def", field:"perc_defense", align:"left", width:75, formatter:"progress", formatterParams:{color:stat_bar_colors[2], legend:(x)=>"&nbsp;&nbsp;"+(x*this.max_defense/100).toFixed(0), legendAlign:'left'}}
+                {title:"Def", field:"perc_defense", align:"left", width:75, headerFilter:"number", headerFilterPlaceholder:"at least", headerFilterFunc:(h,r)=>(+h)*100/this.max_defense<=r, formatter:"progress", formatterParams:{color:stat_bar_colors[2], legend:(x)=>"&nbsp;&nbsp;"+(x*this.max_defense/100).toFixed(0), legendAlign:'left'}}
                 ,
-                {title:"S.Atk", field:"perc_sp_attack", align:"left", width:75, formatter:"progress", formatterParams:{color:stat_bar_colors[3], legend:(x)=>"&nbsp;&nbsp;"+(x*this.max_sp_attack/100).toFixed(0), legendAlign:'left'}}
+                {title:"S.Atk", field:"perc_sp_attack", align:"left", width:75, headerFilter:"number", headerFilterPlaceholder:"at least", headerFilterFunc:(h,r)=>(+h)*100/this.max_sp_attack<=r, formatter:"progress", formatterParams:{color:stat_bar_colors[3], legend:(x)=>"&nbsp;&nbsp;"+(x*this.max_sp_attack/100).toFixed(0), legendAlign:'left'}}
                 ,
-                {title:"S.Def", field:"perc_sp_defense", align:"left", width:75, formatter:"progress", formatterParams:{color:stat_bar_colors[4], legend:(x)=>"&nbsp;&nbsp;"+(x*this.max_sp_defense/100).toFixed(0), legendAlign:'left'}}
+                {title:"S.Def", field:"perc_sp_defense", align:"left", width:75, headerFilter:"number", headerFilterPlaceholder:"at least", headerFilterFunc:(h,r)=>(+h)*100/this.max_sp_defense<=r, formatter:"progress", formatterParams:{color:stat_bar_colors[4], legend:(x)=>"&nbsp;&nbsp;"+(x*this.max_sp_defense/100).toFixed(0), legendAlign:'left'}}
                 ,
-                {title:"Spd", field:"perc_speed", align:"left", width:75, formatter:"progress", formatterParams:{color:stat_bar_colors[5], legend:(x)=>"&nbsp;&nbsp;"+(x*this.max_speed/100).toFixed(0), legendAlign:'left'}}
+                {title:"Spd", field:"perc_speed", align:"left", width:75, headerFilter:"number", headerFilterPlaceholder:"at least", headerFilterFunc:(h,r)=>(+h)*100/this.max_speed<=r, formatter:"progress", formatterParams:{color:stat_bar_colors[5], legend:(x)=>"&nbsp;&nbsp;"+(x*this.max_speed/100).toFixed(0), legendAlign:'left'}}
                 ,
                 {title:"T1", field:"type1", width:57, formatter:type_formatter}
                 ,
@@ -640,7 +640,7 @@ class FancyDex {
 
         let clear_legendary_filter = row3.append("td")
             .append("svg").classed("filter_button", true)
-            .attr("width", 10)
+            .attr("width", 100)
             .attr("height", 20)
             .on("click", ()=>toggle_legendary_filter(null))
         clear_legendary_filter.append("rect")

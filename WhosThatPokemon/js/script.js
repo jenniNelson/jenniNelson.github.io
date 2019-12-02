@@ -271,6 +271,7 @@ class Pokemon{
                 };
         }); //list of location strings
     }
+
 }
 
 function string_to_list(str) {

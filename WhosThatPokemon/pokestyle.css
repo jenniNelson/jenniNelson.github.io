@@ -85,10 +85,17 @@ table.sortable thead {
 .map_place {
     opacity: 0;
 }
+.map_place.with_lines {
+    stroke: #ff2f00;
+}
+.map_place.no_fill {
+    fill: none;
+}
 .highlighted_region, g.highlighted_region>* {
     fill: #ff2f00;
     opacity: .8;
 }
+
 
 rect.svg_background{
     fill: #ebebeb;

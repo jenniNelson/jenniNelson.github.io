@@ -110,12 +110,12 @@ if __name__ == '__main__':
             if i == j:
                 thing.o_score = rate_offense(i)
                 thing.d_score = rate_defense(i)
-                thing.total = thing.o_score*.75 + thing.d_score*.25
+                thing.total = thing.o_score*1 + thing.d_score*.75
                 print(types[i], thing.o_score, thing.d_score, thing.total)
             else:
                 thing.o_score = rate_offense(i, j)
                 thing.d_score = rate_defense(i, j)
-                thing.total = thing.o_score*.75 + thing.d_score*.25
+                thing.total = thing.o_score*1 + thing.d_score*.75
                 print(types[i], types[j], thing.o_score, thing.d_score, thing.total)
             combos.append(thing)
 

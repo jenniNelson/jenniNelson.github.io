@@ -2,14 +2,18 @@
 
 loadData().then(poke_dict => {
 
-    console.log(poke_dict)
+    console.log(poke_dict);
 
     let card_manager = new CardManager();
     // let pokedex = new Pokedex(poke_dict, card_manager);
     let matchupview = new Matchups(poke_dict, card_manager);
     let mapview = new MapView(poke_dict, card_manager);
 
+
     let fancydex = new FancyDex(poke_dict, card_manager);
+
+
+    let dataLoader = new DataLoader(poke_dict, card_manager, matchupview, fancydex);
 
     card_manager.update_objects();
 
@@ -28,59 +32,15 @@ async function loadData() {
         pokemon_dict[mon.long_id] = new Pokemon(mon)
     }
 
-
-//     locs = locs.reduce((accum_obj, item) => {
-//         let loc_string = item.locations
-//
-//         let locs = loc_string.replace(/\]/g,"")
-//                 .replace(/\[/g,"")
-//                 .replace(/\'/g, "")
-//                 .trim()
-//                 .split(",");
-//         // console.log(locs)
-//         item.locations = locs.map( x => {
-//             x = x.trim();
-//             // console.log(x)
-//             if (x.length > 0){
-//                 let [game,map,place] = x.split('/')
-//                 return {
-//                     game: game,
-//                     map: map,
-//                     place: place,
-//                     place_id : place.replace(' ', '_').replace('.', '')
-//                 };
-//             } else{
-//                 return undefined;
-//             }
-//
-// //                                                                []=> ''.split
-//         }).filter(x => x !== undefined);
-//
-//         accum_obj[item.id] = item;
-//
-//         return accum_obj
-//     }, {} );
-//     return [pokemon, locs]
     return pokemon_dict
 }
 
 async function loadFile(file) {
     let data = await d3.csv(file);
-    // .then(d => {
-    //     let mapped = d.map(g => {
-    //         for (let key in g) {
-    //             let numKey = +key;
-    //             if (numKey) {
-    //                 g[key] = +g[key];
-    //             }
-    //         }
-    //         return g;
-    //     });
-    //     return mapped;
-    // });
     return data;
 }
 
+/** A class for managing who is selected in VS / Team Builder views.  **/
 class CardManager{
     constructor() {
         this.vs = {
@@ -98,13 +58,21 @@ class CardManager{
             queue: [0,1,2,3,4,5]
         };
 
-        this.callbacks = []
+        this.iv = '006';
+
+        this.callbacks = [];
+
+        this.rando_mode = false;
+
+
     }
 
+    /** Add a callback for this class to call when a change is made to a selection **/
     add_callback(callback){
         this.callbacks.push(callback)
     }
 
+    /** Change who is selected in a particular list **/
     update_pokemon(which_list, which_card, to_who, checkbox=null){
         // console.log(which_list, which_card, to_who, checkbox)
         if(which_list==="vs" || which_list==="#vs" || which_list==="pvp"){
@@ -114,6 +82,7 @@ class CardManager{
         }
     }
 
+    /** Change who is selected in the teambuilder list **/
     update_team(which_card, to_who, checkbox=null){
 
         // Not a checkbox-style change
@@ -166,6 +135,7 @@ class CardManager{
         this.update_objects("team", which_card, to_who)
     }
 
+    /** Change who is selected in the VS list **/
     update_vs(which_card, to_who, checkbox=null){
 
         // Not a checkbox-style change
@@ -218,10 +188,11 @@ class CardManager{
         this.update_objects("vs", which_card, to_who)
     }
 
+    /** Call all the registered callbacks **/
     update_objects(cat, which_card, to_who){
 
         // console.log(this.team, this.vs, this.callbacks)
-        console.log("YOOHOO", which_card)
+        // console.log("YOOHOO", which_card)
 
         for (let cb of this.callbacks){
             cb(cat, which_card, to_who);
@@ -231,8 +202,12 @@ class CardManager{
 
 }
 
+/** The data structure to hold all info about a particular pokemon **/
 class Pokemon{
     constructor(csv_result) {
+        if (csv_result===undefined){
+            return;
+        }
         this.name = csv_result.name;
         this.long_id = csv_result.long_id;
 
@@ -243,6 +218,9 @@ class Pokemon{
         this.sp_attack = +csv_result.sp_attack;
         this.sp_defense = +csv_result.sp_defense;
         this.speed = +csv_result.speed;
+
+        this.ability1 = ''; //TODO: We don't actually have vanilla abilities easily yet
+        this.ability2 = '';
 
         this.type1 = csv_result.type1; //strings
         this.type2 = csv_result.type2;
@@ -270,6 +248,123 @@ class Pokemon{
                     place_id : place.replace(/\"/g, "").replace(/ /g, '_').replace(/\.|'/g, '')
                 };
         }); //list of location strings
+
+
+        this.rand_type1 = null;
+        this.rand_type2 = null;
+        this.rand_hp = null;
+        this.rand_attack = null;
+        this.rand_defense = null;
+        this.rand_speed = null;
+        this.rand_sp_attack = null;
+        this.rand_sp_defense = null;
+        this.rand_ability1 = null;
+        this.rand_ability2 = null;
+        this.rand_item = null;
+        this.rand_ev_froms = [];
+        this.rand_ev_to = [];
+        this.is_randomized = false;
+
+        // TODO: currently for test purposes defaults to true.
+        this.is_stats_revealed = false;
+        this.is_encountered = false;
+        this.revealed_ev_from_idxs = [];
+        this.revealed_ev_to_idxs = [];
+    }
+
+    getStat(stat) {
+        if(!this.is_randomized) {
+            return this[stat]
+        } else {
+            if(this.is_stats_revealed) {
+                return this["rand_" +stat]
+            }
+            return 0;
+        }
+    }
+
+    getStats() {
+        if(!this.is_randomized) {
+            return [this.hp, this.attack, this.defense, this.sp_attack, this.sp_defense, this.speed]
+        } else {
+            if(this.is_stats_revealed) {
+                return [this.rand_hp, this.rand_attack, this.rand_defense, this.rand_sp_attack, this.rand_sp_defense, this.rand_speed]
+            }
+            return [0,0,0,0,0,0];
+        }
+    }
+
+    getStatTotal() {
+        if(!this.is_randomized) {
+            return this.stat_total
+        } else {
+            if(this.is_stats_revealed) {
+                return this.rand_hp + this.rand_attack + this.rand_defense + this.rand_sp_attack + this.rand_sp_defense + this.rand_speed
+            }
+            return 0
+        }
+    }
+
+    getType() {
+        if(!this.is_randomized) {
+            return [this.type1, this.type2]
+        } else {
+            if (this.is_encountered || this.is_stats_revealed) {
+                return [this.rand_type1, this.rand_type2]
+            }
+            return ["missing", ""]
+        }
+    }
+
+    getAbilities() {
+        if(!this.is_randomized) {
+            return [this.ability1, this.ability2]
+        } else {
+            if (this.is_stats_revealed) {
+                return [this.rand_ability1, this.rand_ability2]
+            }
+            return ["???", ""]
+        }
+    }
+
+    getEvosTo() {
+        if(!this.is_randomized) {
+            return this.ev_to
+        } else {
+            return this.rand_ev_to
+        }
+    }
+
+    getEvosFrom() {
+        if(!this.is_randomized) {
+            return this.ev_from
+        } else {
+            return this.rand_ev_froms
+        }
+    }
+
+    getRevealedEvosFrom() {
+        if(!this.is_randomized) {
+            return this.ev_from?[this.ev_from]:[]
+        } else {
+            return this.revealed_ev_from_idxs.map( i => this.rand_ev_froms[i])//this.rand_ev_froms
+        }
+    }
+
+    reveal_evolutions() {
+        for(let i = 0; i < this.rand_ev_to.length; i++) {
+            if(!this.revealed_ev_to_idxs.includes(i))
+                this.revealed_ev_to_idxs.push(i);
+        }
+        for(let i = 0; i < this.rand_ev_froms.length; i++) {
+            if(!this.revealed_ev_from_idxs.includes(i))
+                this.revealed_ev_from_idxs.push(i);
+        }
+    }
+
+    hide_evolutions() {
+        this.revealed_ev_to_idxs = [];
+        this.revealed_ev_from_idxs = [];
     }
 
 }

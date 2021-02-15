@@ -2,6 +2,8 @@ class Matchups{
     constructor(pokemon, card_manager) {
 
         let that = this;
+
+        //callback function to update other parts of the page
         function update_pokemon(cat, pos, mon){
             if(mon !== undefined){
                 console.log(cat, pos, mon);
@@ -10,19 +12,24 @@ class Matchups{
             }
             // that.initialize_cards();
         }
+
+        //register our callback function to the site manager object
         this.card_manager = card_manager;
         this.card_manager.add_callback(update_pokemon);
 
+        //Dictionary from long_id to Pokemon
         this.poke_dict = pokemon;
+
+        //Array containing just the Pokemon
         this.mons = Object.values(pokemon).sort((a,b)=>+a.long_id - +b.long_id);
         this.mons.push(missingno);
-        console.log(this.mons)
 
-        this.current_view = "team";
+        this.current_view = "iv";
 
         this.num_vs = 2;
         this.num_team = 6;
 
+        //Map of color schemes for different types
         this.type_colors = {
             "fire" : ["#ff4f4a","#9b1414"],
             "water" : ["#6765ff","#3b3e9b"],
@@ -45,6 +52,7 @@ class Matchups{
             "missing" : ["#505050", "#0c0c0c"]
         };
 
+        //array of colors for each different stat
         this.stat_bar_colors = [
             "#ff4f4a",
             "#ff9529",
@@ -54,6 +62,7 @@ class Matchups{
             "#ff77e8"
         ];
 
+        //Scales for charts
         this.stat_scale =d3.scaleLinear().domain([0,250]).range([0,250]);
         this.reverse_stat_scale = d3.scaleLinear().domain([0,250]).range([0,-375]);
         this.reverse_stat_axis = d3.axisLeft(this.reverse_stat_scale).tickSize(345).ticks(5);
@@ -61,6 +70,8 @@ class Matchups{
 
         this.hp_bar_scale = d3.scaleLinear().domain([0,1]).range([0,300]);
 
+        this.individual_view = new IndividualView(this.card_manager, this.poke_dict, "006");
+        //initialize components of each view.
         this.initialize_tabs();
         this.fill_dropdowns();
         this.initialize_cards();
@@ -69,15 +80,16 @@ class Matchups{
 
     initialize_tabs() {
         let that = this;
-        d3.selectAll("#view_switcher .tablinks").data(["vs", "team"])
+        d3.selectAll("#view_switcher .tablinks").data(["vs", "team", "iv"])
             .on("click", d=>that.switch_tabs(d));
-        d3.select("#team_builder_button")
+        d3.select("#individual_view_button")
             .classed("active", true);
     }
 
+    //When the user clicks between tabs, the view should change between vs and team view.
     switch_tabs(name) {
         if(name === this.current_view)
-            return
+            return;
         d3.selectAll(".lef_table")
             .classed("hidden", true);
         d3.selectAll("#view_switcher .tablinks")
@@ -101,18 +113,25 @@ class Matchups{
                 .classed("hidden", false);
             this.current_view = "team"
         }
+        else if (name === "iv" && this.current_view !== "iv") {
+            d3.select("#individual_view_button")
+                .classed("active", true);
+            d3.select("#individual_view_pane")
+                .classed("hidden", false);
+            this.current_view = "iv";
+        }
 
     }
 
+    //Fill every dropdown menu in both vs and team views
     fill_dropdowns() {
         let that = this;
         for (let j = 0; j < this.num_vs; j++) {
             let pane = d3.select("#vs_" + j);
 
+            //When the dropdowns change, it should trigger changes throughout the page
             $("#vs_dd_"+j).select2().on("select2:select", function(evt) {
                 let mon = d3.select(evt.params.data.element).datum();
-                // that.card_manager.vs[j] = mon.long_id
-                // that.draw_card(mon.long_id, "#vs_svg_" + j);
                 that.card_manager.update_vs(j, mon.long_id)
             });
 
@@ -122,6 +141,7 @@ class Matchups{
                 .attr("value", d=>d.long_id)
                 .text( d => (d.long_id === "whodat")?"(No Selection)":(d.name + " (#" + d.long_id + ")"));
 
+            //This probably should be elsewhere, but it works.
             pane.append("svg")
                 .attr("id", "vs_svg_" + j)
                 .attr("width", 430)
@@ -133,9 +153,6 @@ class Matchups{
 
             $("#tb_dd_"+j).select2().on("select2:select", function(evt) {
                 let mon = d3.select(evt.params.data.element).datum();
-                // that.card_manager.team[j] = mon.long_id;
-                // that.draw_card(mon.long_id, "#tb_svg_" + j);
-
                 that.card_manager.update_team(j, mon.long_id)
             });
 
@@ -149,37 +166,67 @@ class Matchups{
                 .attr("width", 430)
                 .attr("height", 225)
         }
+
+        d3.select("#iv_dd").selectAll("option").data(this.mons).join("option")
+            .property("selected", d=>d.long_id === this.card_manager.iv)
+            .attr("value", d=>d.long_id)
+            .text(d => (d.long_id === "whodat")?"(No Selection)":(d.name + " (#" + d.long_id + ")"));
+
+        //Add dropdown to iv;
+        $("#iv_dd").select2().on("select2:select", function(evt) {
+                let mon = d3.select(evt.params.data.element).datum();
+                that.card_manager.iv = mon.long_id;
+                that.individual_view.update(mon.long_id)
+        });
     }
 
+    //initialize both cards in vs, and all 6 cards in team builder
+    // The initial pokemon selected are determined by the card manager object.
     initialize_cards() {
         for (let j = 0; j<this.num_vs; j++) {
             let mon = this.poke_dict[this.card_manager.vs[j]];
             this.draw_card(this.card_manager.vs[j], "#vs_svg_" + j);
-            $("#vs_dd_"+j).val(mon.long_id)
+            $("#vs_dd_"+j).val(mon?mon.long_id:"whodat")
                 .trigger("change");
         }
         for (let j = 0; j<this.num_team; j++) {
             let mon = this.poke_dict[this.card_manager.team[j]];
             this.draw_card(this.card_manager.team[j], "#tb_svg_" + j);
-            $("#tb_dd_"+j).val(mon.long_id)
+            $("#tb_dd_"+j).val(mon?mon.long_id:"whodat")
                 .trigger("change");
         }
     }
 
+    //Part of the method passed into our callback manager.
+    //TODO: Update to include individual view
     update_card(cat, pos, mon_id) {
-        let dd_id = ((cat==="vs")?"#vs_dd_":"#tb_dd_") + pos;
-        let svg_id = ((cat==="vs")?"#vs_svg_":"#tb_svg_") + pos;
+        if( cat === "vs" || cat === "team") {
+            let dd_id = ((cat==="vs")?"#vs_dd_":"#tb_dd_") + pos;
+            let svg_id = ((cat==="vs")?"#vs_svg_":"#tb_svg_") + pos;
 
-        console.log(svg_id);
+            console.log(svg_id);
 
-        $(dd_id).val(mon_id).trigger("change");
-        this.draw_card(mon_id, svg_id);
+            $(dd_id).val(mon_id).trigger("change");
+            this.draw_card(mon_id, svg_id);
+        } else if(cat === "iv") {
+            let dd_id = "iv_dd";
+            let svg_id = "iv_svg";
+
+            console.log(svg_id);
+            $(dd_id).val(mon_id).trigger("change");
+            this.individual_view.update(mon_id);
+        }
+
     }
 
+    //The first of two meaty methods. Fills in a card with all information about a Pokemon.
     draw_card(id, svg_id) {
+        let that = this;
 
         let stat_labels = ["hp","atk","def","s.a.", "s.d.", "spd"];
-        d3.select(svg_id).select("g").remove();
+        d3.select(svg_id)
+            .attr("height", that.card_manager.rando_mode ? 250: 225 )
+            .select("g").remove();
         let pallet = d3.select(svg_id).append("g");
         let mon;
         if (id === "whodat"){
@@ -190,16 +237,16 @@ class Matchups{
         pallet.append("rect")
             .attr("x", 5)
             .attr("y", 5)
-            .attr("height", 220)
+            .attr("height", that.card_manager.rando_mode ? 245: 220 )
             .attr("width", 420)
             .attr("rx", 10)
-            .attr("fill", this.type_colors[mon.type1][0]);
+            .attr("fill", this.type_colors[mon.getType()[0]][0]);
 
         pallet.append("circle")
             .attr("cx", 60)
             .attr("cy", 60)
             .attr("r", 50)
-            .attr("fill", this.type_colors[mon.type1][1]);
+            .attr("fill", this.type_colors[mon.getType()[0]][1]);
 
         pallet.append("image")
             .attr("href","data/pokemon_data/sprites/" + mon.long_id + ".png")
@@ -218,13 +265,13 @@ class Matchups{
             .attr("height", 130)
             .attr('rx', 10)
             .attr("fill", "#fff8d6")
-            .attr("stroke", this.type_colors[mon.type1][1])
+            .attr("stroke", this.type_colors[mon.getType()[0]][1])
             .attr("stroke-width", "3pt");
 
         let chart_group = bar_group.append("g")
             .attr("transform", "translate(10, 7)");
 
-        chart_group.selectAll("rect").data([mon.hp, mon.attack, mon.defense, mon.sp_attack, mon.sp_defense, mon.speed])
+        chart_group.selectAll("rect").data(mon.getStats())//[mon.hp, mon.attack, mon.defense, mon.sp_attack, mon.sp_defense, mon.speed])
             .join("rect")
             .attr("x", 20)
             .attr("y", (d,i) => 17*i)
@@ -233,7 +280,8 @@ class Matchups{
             .attr("fill", (d,i) => this.stat_bar_colors[i]);
 
         chart_group.append("g")
-            .selectAll("text").data([mon.hp, mon.attack, mon.defense, mon.sp_attack, mon.sp_defense, mon.speed]).join("text")
+            .selectAll("text").data(mon.getStats())//[mon.hp, mon.attack, mon.defense, mon.sp_attack, mon.sp_defense, mon.speed]).join("text")
+            .join("text")
             .text(d => d)
             .attr("x", 23)
             .attr("y", (d,i)=>12 + 17*i);
@@ -252,7 +300,7 @@ class Matchups{
             .attr("y", 135)
             .style("font-weight", "bold")
             .style("font-size", "12px")
-            .text("TOTAL STATS: " + mon.stat_total);
+            .text("TOTAL STATS: " + mon.getStatTotal());
 
         let info_group = pallet.append("g")
             .attr("transform", "translate(10, 120)");
@@ -264,7 +312,7 @@ class Matchups{
         info_group.append("text")
             .attr("x", 0)
             .attr("y", 13)
-            .text(((mon.type2 !== '') && (mon.type1 !== mon.type2) ?mon.type1 +' & '+ mon.type2 :mon.type1))
+            .text(((mon.getType()[1] !== '') && (mon.getType()[0] !== mon.getType()[1]) ?mon.getType()[0] +' & '+ mon.getType()[1] :mon.getType()[0]))
             .style("font-size", "11pt");
 
 
@@ -297,6 +345,9 @@ class Matchups{
 
         let [vs_or_tb, _, card_id] = svg_id.split('_');
 
+        let cradius = 20;
+        let cspace = 45;
+
         if (prev_ev) {
             let prev_group = pallet.append("g")
                 .attr("transform", "translate(130, 165)");
@@ -312,7 +363,7 @@ class Matchups{
                 .attr("cx", 10)
                 .attr("cy", 25)
                 .attr("r", 20)
-                .attr("fill", this.type_colors[mon.type1][1]);
+                .attr("fill", this.type_colors[mon.getType()[0]][1]);
 
 
             prev_group.append("image")
@@ -344,13 +395,13 @@ class Matchups{
                 .attr("y", 0);
 
             let groups = next_group.selectAll("g").data(next_evs).join("g")
-                .attr("transform", (d,i) => "translate(" +( -20 + i*-45 )+ ", 10)")
+                .attr("transform", (d,i) => "translate(" +( -20 + i*-45 )+ ", 10)");
 
             groups.append("circle")
                 .attr("cx", 20)
                 .attr("cy", 15)
                 .attr("r", 20)
-                .attr("fill", this.type_colors[mon.type1][1]);
+                .attr("fill", this.type_colors[mon.getType()[0]][1]);
             let that=this;
             groups.append("image")
                 .attr("href", d => "data/pokemon_data/sprites/" + d + ".png")
@@ -371,8 +422,76 @@ class Matchups{
                 .style("text-anchor", "middle")
                 .style("font-size", "8pt")
         }
+
+        if(this.card_manager.rando_mode) {
+            let checkbox_group = pallet.append("g")
+                .attr("transform", "translate(105, 222)");
+
+            checkbox_group.append("circle")
+                .attr("cx", 10)
+                .attr("cy", 10)
+                .attr("r", 10)
+                .attr("stroke", this.type_colors[mon.getType()[0]][1])
+                .attr("fill", "none")
+                .on("click", () => console.log("clicked"));//this.card_manager.update_pokemon(vs_or_tb, +card_id, prev_ev));
+
+
+            checkbox_group.append("circle")
+                .attr("cx", 10)
+                .attr("cy", 10)
+                .attr("r", 7)
+                .attr("fill", (mon.is_encountered || mon.is_stats_revealed)?this.type_colors[mon.getType()[0]][1]:this.type_colors[mon.getType()[0]][0])
+                .on("click", function() {
+                    if(mon.is_stats_revealed){
+                        mon.is_stats_revealed = false;
+                        mon.is_encountered = false;
+                    } else{
+                        mon.is_encountered = !mon.is_encountered;
+                    }
+                    console.log(mon);
+                    that.card_manager.update_pokemon(vs_or_tb, +card_id, mon.long_id);
+                });
+
+
+            checkbox_group.append("text")
+                .attr("x", 24)
+                .attr("y", 15)
+                .style("font-size", "10pt")
+                .text("Encountered");
+
+            checkbox_group.append("circle")
+                .attr("cx", 150)
+                .attr("cy", 10)
+                .attr("r", 10)
+                .attr("stroke", this.type_colors[mon.getType()[0]][1])
+                .attr("fill", "none");
+
+
+            checkbox_group.append("circle")
+                .attr("cx", 150)
+                .attr("cy", 10)
+                .attr("r", 7)
+                .attr("fill", mon.is_stats_revealed ? this.type_colors[mon.getType()[0]][1]: this.type_colors[mon.getType()[0]][0])
+                .on("click", function() {
+                    if (mon.is_stats_revealed){
+                        mon.is_stats_revealed = false;
+                    }else {
+                        mon.is_stats_revealed = true;
+                        mon.is_encountered = true;
+                    }
+                    that.card_manager.update_pokemon(vs_or_tb, +card_id, mon.long_id)
+                });
+
+
+            checkbox_group.append("text")
+                .attr("x", 164)
+                .attr("y", 15)
+                .style("font-size", "10pt")
+                .text("Caught");
+        }
     }
 
+    //Sets up the summary sections at the bottom of vs and tb views.
     initialize_summaries() {
 
         d3.select("#matchup_summary").append("svg")
@@ -388,18 +507,22 @@ class Matchups{
         this.draw_vs_summary();
 
         this.draw_team_summary();
+        this.individual_view.update(this.individual_view.current_mon)
     }
 
-
+    //Part of the method passed into our callback manager.
     update_summary(category) {
         if (category === "vs") {
             this.draw_vs_summary();
-        } else {
+        } else if (category === "team") {
             this.draw_team_summary();
+        } else if (category === "iv") {
+            // this.individual_view.update(this.individual_view.current_mon)
         }
 
     }
 
+    //display information on what Pokemon would win in a fight.
     draw_vs_summary() {
 
         let mons =[];
@@ -490,6 +613,7 @@ class Matchups{
         }
     }
 
+    //helper method to evaluate who wins and how they won
     draw_winner(group, left_to_faint, right_to_faint, lpref, rpref) {
         let left = this.poke_dict[this.card_manager.vs[0]];
         let right = this.poke_dict[this.card_manager.vs[1]];
@@ -503,11 +627,11 @@ class Matchups{
             turns_to_end = left_to_faint;
             strat = rpref;
         } else {
-            if(left.speed > right.speed) {
+            if(left.getStat('speed') > right.getStat('speed')) {
                 winner = left;
                 turns_to_end = right_to_faint;
                 strat = lpref;
-            } else if (right.speed > left.speed) {
+            } else if (right.getStat('speed') > left.getStat('speed')) {
                 winner = right;
                 turns_to_end = left_to_faint;
                 strat = rpref;
@@ -526,8 +650,9 @@ class Matchups{
 
     }
 
+    //helper to evaluate which pokemon is faster
     draw_speed_arrow(group, left, right, x, y) {
-        if(left.speed > right.speed) {
+        if(left.getStat('speed') > right.getStat('speed')) {
             group.append("g").attr("transform", "translate("+(x+10)+","+y+")").append("path")
                 .attr("fill", "#fff240")
                 .attr("d",`
@@ -546,7 +671,7 @@ class Matchups{
                 .style("text-anchor", "middle")
                 .style("font-size", "7pt")
                 .text("GOES FIRST")
-        } else if (right.speed > left.speed) {
+        } else if (right.getStat('speed') > left.getStat('speed')) {
             group.append("g").attr("transform", "translate("+(x - 10)+","+y+")").append("path")
                 .attr("fill", "#fff240")
                 .attr("d",`
@@ -576,6 +701,7 @@ class Matchups{
         }
     }
 
+    //helper to evaluate how much health a pokemon has left.
     draw_hp_bar(group, percentage, x, y, is_phys, mon) {
         let base = group.append("g").attr("transform", "translate(" + x +","+y+")");
         base.append("rect").attr("x", 0).attr("y", 0).attr("width", 300).attr("height", 20)
@@ -591,6 +717,7 @@ class Matchups{
 
     }
 
+    //Draw the type matchup info and statistical analysis of a team.
     draw_team_summary() {
         let mons = [];
         for(let i =0; i < 6; i++) {
@@ -648,12 +775,12 @@ class Matchups{
         let mon_groups = mark_group.selectAll("g").data(mons).join("g");
 
         mon_groups.selectAll("line").data((d,i) => [
-            {name:d.name,stat:d.hp,         stat2:d.attack,         type:d.type1, index: i},
-            {name:d.name,stat:d.attack,     stat2:d.defense,     type:d.type1, index: i},
-            {name:d.name,stat:d.defense,    stat2:d.sp_attack,    type:d.type1, index: i},
-            {name:d.name,stat:d.sp_attack,  stat2:d.sp_defense,  type:d.type1, index: i},
-            {name:d.name,stat:d.sp_defense, stat2:d.speed, type:d.type1, index: i},
-            {name:d.name,stat:d.speed,      stat2:d.speed,      type:d.type1, index: i}
+            {name:d.name,stat:d.getStat('hp'),         stat2:d.getStat('attack'),         type:d.getType()[0], index: i},
+            {name:d.name,stat:d.getStat('attack'),     stat2:d.getStat('defense'),     type:d.getType()[0], index: i},
+            {name:d.name,stat:d.getStat('defense'),    stat2:d.getStat('sp_attack'),    type:d.getType()[0], index: i},
+            {name:d.name,stat:d.getStat('sp_attack'),  stat2:d.getStat('sp_defense'),  type:d.getType()[0], index: i},
+            {name:d.name,stat:d.getStat('sp_defense'), stat2:d.getStat('speed'), type:d.getType()[0], index: i},
+            {name:d.name,stat:d.getStat('speed'),      stat2:d.getStat('speed'),      type:d.getType()[0], index: i}
         ]).join("line")
             .attr("class" , d=> "l_" + d.index)
             .style("opacity", 0)
@@ -665,12 +792,12 @@ class Matchups{
             .attr("stroke-width", 2);
 
         mon_groups.selectAll("ellipse").data((d,i)=>[
-            {name:d.name,stat:d.hp,type:d.type1, index: i},
-            {name:d.name,stat:d.attack,type:d.type1, index: i},
-            {name:d.name,stat:d.defense,type:d.type1, index: i},
-            {name:d.name,stat:d.sp_attack,type:d.type1, index: i},
-            {name:d.name,stat:d.sp_defense,type:d.type1, index: i},
-            {name:d.name,stat:d.speed,type:d.type1, index: i}
+            {name:d.name,stat:d.getStat('hp'),type:d.getType()[0], index: i},
+            {name:d.name,stat:d.getStat('attack'),type:d.getType()[0], index: i},
+            {name:d.name,stat:d.getStat('defense'),type:d.getType()[0], index: i},
+            {name:d.name,stat:d.getStat('sp_attack'),type:d.getType()[0], index: i},
+            {name:d.name,stat:d.getStat('sp_defense'),type:d.getType()[0], index: i},
+            {name:d.name,stat:d.getStat('speed'),type:d.getType()[0], index: i}
             ]).join("ellipse")
                 .attr("cx", (d,i) => 60*i)
                 .attr("cy", d => this.reverse_stat_scale(d.stat))
@@ -763,10 +890,20 @@ class Matchups{
 
     }
 
+    refresh_panes() {
+        //update every card
+        this.initialize_cards();
 
+        this.update_summary("vs");
+        this.update_summary("team");
+        this.individual_view.update(this.individual_view.current_mon)
+    }
 }
 
+//-----------------Pokemon information helper methods------------------
 
+
+//Given a set of pokemon, return a set of what types are covered, uncovered, and what types that team is weak to.
 function get_type_coverage(mons) {
     if(mons.length === 0) {
         return {covered: [], uncovered:[], weak_to: []}
@@ -786,6 +923,7 @@ function get_type_coverage(mons) {
     return {covered: covered, uncovered: uncovered, weak_to: weak_to}
 }
 
+//Find the types that this team is weak to.
 function team_weak_to(mons, type) {
     let total = 0;
     for (let mon of mons) {
@@ -798,6 +936,7 @@ function team_weak_to(mons, type) {
     }
 }
 
+//Find the types that at least one member of the team is strong against.
 function team_can_cover(mons, type) {
     for (let mon of mons) {
         if(can_cover(mon, type))
@@ -806,33 +945,45 @@ function team_can_cover(mons, type) {
     return false
 }
 
+//Determines if an individual pokemon is weak to a particular type
 function is_weak_to(mon, type) {
-    let idx1 = types_to_idx[mon.type1];
+    // Assuming that if we don't know the type, there's no type weakness
+    if( mon.getType()[0] === '' || mon.getType()[0] === 'missing'){
+        return false;
+    }
+    let idx1 = types_to_idx[mon.getType()[0]];
     let atkidx = types_to_idx[type];
-    if(mon.type2 !== '' && mon.type2 !== mon.type1) {
-        let idx2 = types_to_idx[mon.type2];
+    if(mon.getType()[1] !== '' && mon.getType()[1] !== mon.getType()[0]) {
+        let idx2 = types_to_idx[mon.getType()[1]];
         return matchups[atkidx][idx1] * matchups[atkidx][idx2] > 1
     } else {
         return matchups[atkidx][idx1] > 1
     }
 }
 
+//Determines if an individual pokemon is strong against a particular type
 function can_cover(mon, type) {
-    let idx1 = types_to_idx[mon.type1];
+    // Assuming that if we don't know the type, there's no type strength
+    if( mon.getType()[0] === '' || mon.getType()[0] === 'missing'){
+        return false;
+    }
+    let idx1 = types_to_idx[mon.getType()[0]];
     let defidx = types_to_idx[type];
-    if(mon.type2 !== '' && mon.type2 !== mon.type1) {
-        let idx2 = types_to_idx[mon.type2];
+    if(mon.getType()[1] !== '' && mon.getType()[1] !== mon.getType()[0]) {
+        let idx2 = types_to_idx[mon.getType()[1]];
         return Math.max(matchups[idx1][defidx] , matchups[idx2][defidx]) > 1
     } else {
         return matchups[idx1][defidx] > 1
     }
 }
 
+//Returns the numerical HP total a pokemon has at a given level (using a slightly simplified game equation)
 function hp_stat(mon, level) {
     console.log(mon);
-    return Math.floor((2*mon.hp + 15)*level/100) + level + 10
+    return Math.floor((2*mon.getStat('hp') + 15)*level/100) + level + 10
 }
 
+//Calculate damage that one pokemon deals to another
 function damage(attack_mon, receive_mon, is_special, level, power) {
 
     let topleft = 2*level/5 + 2;
@@ -843,31 +994,40 @@ function damage(attack_mon, receive_mon, is_special, level, power) {
 
 }
 
+//Calculate the numerical ratio between an attacker and defenders attack and defense stats respectively.
 function a_d_ratio(attacker, defender, spec, lvl) {
     let attack, defense;
     if(spec) {
-        attack = stat(attacker.sp_attack, lvl);
-        defense = stat(defender.sp_defense, lvl);
+        attack = stat(attacker.getStat('sp_attack'), lvl);
+        defense = stat(defender.getStat('sp_defense'), lvl);
     } else {
-        attack = stat(attacker.attack, lvl);
-        defense = stat(defender.defense, lvl);
+        attack = stat(attacker.getStat('attack'), lvl);
+        defense = stat(defender.getStat('defense'), lvl);
     }
     return attack / defense;
 }
 
+//general formula for calculating a base stat (Besides hp)
 function stat(base, level=50) {
     return (2*base+15)*level/100 + 5
 }
 
+//Returns the multiplier an attack would have given the two pokemon's types
 function type_modifier(attacker, defender) {
-    let atk_1 = types_to_idx[attacker.type1];
-    let def_1 = types_to_idx[defender.type1];
+    // Assuming that if we don't know the type of one/both, it's an even fight
+    if(attacker.getType()[0] === '' || attacker.getType()[0] === 'missing'
+        || defender.getType()[0] === '' || defender.getType()[0] === 'missing'){
+        return 1;
+    }
 
-    if(attacker.type2 !== '' && attacker.type2 !== attacker.type1) {
-        let atk_2 = types_to_idx[attacker.type2];
+    let atk_1 = types_to_idx[attacker.getType()[0]];
+    let def_1 = types_to_idx[defender.getType()[0]];
 
-        if(defender.type2 !== '' && defender.type2 !== defender.type1) {
-            let def_2 = types_to_idx[defender.type2];
+    if(attacker.getType()[1] !== '' && attacker.getType()[1] !== attacker.getType()[0]) {
+        let atk_2 = types_to_idx[attacker.getType()[1]];
+
+        if(defender.getType()[1] !== '' && defender.getType()[1] !== defender.getType()[0]) {
+            let def_2 = types_to_idx[defender.getType()[1]];
             return Math.max(
                 matchups[atk_1][def_1]*matchups[atk_1][def_2],
                 matchups[atk_2][def_1]*matchups[atk_2][def_2]
@@ -879,8 +1039,8 @@ function type_modifier(attacker, defender) {
             )
         }
     } else {
-        if(defender.type2 !== '' && defender.type2 !== defender.type1) {
-            let def_2 = types_to_idx[defender.type2];
+        if(defender.getType()[1] !== '' && defender.getType()[1] !== defender.getType()[0]) {
+            let def_2 = types_to_idx[defender.getType()[1]];
             return matchups[atk_1][def_1]*matchups[atk_1][def_2]
         } else {
             return matchups[atk_1][def_1]
@@ -888,7 +1048,7 @@ function type_modifier(attacker, defender) {
     }
 }
 
-
+//lets me map a type string into a number
 let types_to_idx = {
     "normal":0,
     "fire":1,
@@ -910,6 +1070,7 @@ let types_to_idx = {
     "fairy":17
 };
 
+//lets me map a number into a type string
 let idx_to_types = [
     "normal",
     "fire",
@@ -931,6 +1092,7 @@ let idx_to_types = [
     "fairy"
 ];
 
+//multipliers of all type matchups, accessible using numbered types.
 let matchups = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, .5, 0, 1, 1, .5, 1],
     [1, .5, .5, 2, 1, 2, 1, 1, 1, 1, 1, 2, .5, 1, .5, 1, 2, 1],
@@ -952,6 +1114,7 @@ let matchups = [
     [1, .5, 1, 1, 1, 1, 2, .5, 1, 1, 1, 1, 1, 1, 2, 2, .5, 1]
 ];
 
+//A blank pokemon, meant to represent no selection.
 let missingno = {
                 name: "(no selection)",
                 type1 : "missing",
@@ -967,5 +1130,31 @@ let missingno = {
                 height_m: "?",
                 weight_kg: "?",
                 ev_from : "",
-                ev_to : []
+                ev_to : [],
+                getType() {
+                    return ["missing", ""]
+                },
+                getStats() {
+                    return [0,0,0,0,0,0]
+                },
+                getStatTotal() {
+                    return 0;
+                },
+                getAbilities() {
+                    return ["???",""];
+                },
+                getEvosTo() {
+                    return []
+                },
+                getEvosFrom() {
+                    return [];
+                },
+                getRevealedEvosFrom() {
+                    return [];
+                },
+                getRevealedEvosTo() {
+                    return [];
+                }
+
+
 };

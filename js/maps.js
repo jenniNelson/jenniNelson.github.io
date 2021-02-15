@@ -59,6 +59,7 @@ game_to_acro = {
                     "Pokémon Green (Jp.) | Pokémon Blue (Intl.)" : [{game:"Pokémon Green (Jp.)", text: "G(j)", id: "green_jp"},{game: "Pokémon Blue (Jp.)", text: "B", id: "blue"}]
                 };
 
+/** A sensible way to sort locations, such that Routes are listed first **/
 function location_sort(a,b) {
     if (a.place.startsWith("Route") && b.place.startsWith("Route")) {
         return +a.place.split(' ')[1] - +b.place.split(' ')[1]
@@ -77,15 +78,6 @@ class MapView {
     constructor(loc_data, card_manager){
 
         let that = this;
-        // function update_pokemon()
-        // {
-        //     MapView.redraw_cards(that);
-        //     // for (let i of [0, 1, 2, 3, 4, 5]) {
-        //     //     let spot = d3.select('#map_poke_' + i);
-        //     //     let the_poke = that.loc_data[that.card_manager.team[i]];
-        //     //     that.make_location_card(spot, the_poke);
-        //     // }
-        // }
         this.card_manager = card_manager;
         this.card_manager.add_callback(() => MapView.redraw_cards(that));
 
@@ -156,6 +148,7 @@ class MapView {
                 image: "data/map_data/Alola_annotated.svg"
             }
             };
+        /** Make map tabs  **/
         d3.select("#map_area").select(".tab").selectAll("button")
             .data(Object.values(gen_list))
             .join("button")
@@ -164,6 +157,7 @@ class MapView {
             .on("click", (d) => this.open_map(d))
             .text(d => d.text);
 
+        /** Add the map images **/
         d3.select("#map_area>#the_maps").selectAll("div.tabcontent")
             .data(Object.values(gen_list))
             .join("div")
@@ -185,29 +179,19 @@ class MapView {
             })
 
 
-
         // Default Open
         this.open_map(gen_list.kanto)
 
     }
 
+    /** Open a tab **/
     open_map(which) {
         // Declare all variables
         let i, tabcontent, tablinks;
 
-        // Get all elements with class="tabcontent" and hide them
-        // tabcontent = document.getElementsByClassName("tabcontent");
-        // for (i = 0; i < tabcontent.length; i++) {
-        //     tabcontent[i].style.display = "none";
-        // }
         tabcontent = d3.selectAll("#map_area .tabcontent")
             .style("display", "none")
 
-        // Get all elements with class="tablinks" and remove the class "active"
-        // tablinks = document.getElementsByClassName("tablinks");
-        // for (i = 0; i < tablinks.length; i++) {
-        //     tablinks[i].className = tablinks[i].className.replace(" active", "");
-        // }
         tablinks = d3.selectAll("#map_area .tablinks")
             .classed("active", false);
 
@@ -225,20 +209,17 @@ class MapView {
         the_region.classed("highlighted_region", true);
 
     }
-
     unhighlight_region(d){
 
         let the_region = d3.select("#"+d.map).select("#"+d.place_id)
         the_region.classed("highlighted_region", false);
 
     }
-
     highlight_pokemon_regions(places){
         for (let place of places){
             this.highlight_region(place)
         }
     }
-
     unhighlight_pokemon_regions(places){
 
         for (let place of places){
@@ -267,6 +248,7 @@ class MapView {
 
             selection.attr("style", "border-radius:15px;background-color:" + type_colors[mon.type1][0])
 
+            /** BIG FANCY THING TO GET LOCATIONS IN A PARTICULAR ORDER **/
             let ordered_locations = Object.values(
                 mon.locations.filter(x => x.map === this.opened_map)
                 .reduce((accum, item) => {
@@ -278,28 +260,6 @@ class MapView {
                     games_to_add.forEach(game_to_add => accum[item.place_id].games.add(game_to_add));
                     return accum;
                 }, {})).sort(location_sort);
-
-            // let prior_evs = [];
-            // let prior_locs = [];
-            // let prior = mon.ev_from;
-            // while( prior.length > 0){
-            //     let priorp = this.loc_data[prior];
-            //     prior_evs.push(priorp);
-            //     prior = priorp.ev_from;
-            //     prior_locs.push(Object.values(
-            //         priorp.locations.filter(x => x.map === this.opened_map)
-            //         .reduce((accum, item) => {
-            //             if(! (item.place_id in accum) ){
-            //                 accum[item.place_id] = {games: new Set(), map: item.map, place: item.place, place_id: item.place_id};
-            //             }
-            //             let games_to_add = item.game in game_to_acro ? game_to_acro[item.game] : {text: item.game, id: "unknown"};
-            //             // console.log(games_to_add, item)
-            //             games_to_add.forEach(game_to_add => accum[item.place_id].games.add(game_to_add));
-            //             return accum;
-            //         }, {})).sort(location_sort)
-            //     )
-            // }
-            // console.log(prior_evs, prior_locs);
 
 
             poke_pic.append("circle")
@@ -334,31 +294,11 @@ class MapView {
                 .text(d =>d.place)
                 .attr("title", d=> Array.from(d.games).reduce( (str, x)=> str + x.game + ", ", "").slice(0,-2));
 
-            // for( let pr_ev in prior_evs){
-            //     for (let loc of prior_locs[pr_ev]){
-            //
-            //         let row = table
-            //             .append("tr")
-            //             .on("mouseover", d => this.highlight_region(d))
-            //             .on("mouseout", d => this.unhighlight_region(d))
-            //         row.append("td")
-            //             .text( loc.place + " (from " +prior_evs[pr_ev].name + ")")
-            //             .attr("title", Array.from(loc.games).reduce( (str, x)=> str + x.game + ", ", "").slice(0,-2));
-            //     }
-            // }
-
 
         } else {
 
             selection.attr("style", "border-radius:15px;background-color:" + type_colors["missing"][0])
 
-            // poke_pic.append("rect")
-            //     .attr("x", 0)
-            //     .attr("y", 0)
-            //     .attr("height", 120)
-            //     .attr("width", 120)
-            //     .attr("rx", 10)
-            //     .attr("fill", type_colors["missing"][0]);
 
             poke_pic.append("circle")
                 .attr("cx", 60)
